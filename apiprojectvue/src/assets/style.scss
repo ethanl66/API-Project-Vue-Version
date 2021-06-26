@@ -1,0 +1,400 @@
+html,
+body,
+* {
+  font-size: 62.5%;
+  margin: 0;
+  padding: 0;
+  color: #edf1f5;
+  box-sizing: border-box;
+}
+
+$font-main: "Manrope", sans-serif;
+$light-theme-bg: #edf1f5;
+$dark-theme-bg: #191919;
+$dark-theme-light: #202020;
+$dark-theme-hover: #383838;
+$dark-theme-blue: #426585;
+$dark-text-blue: #7fc3ff;
+$dark-text-gray: #839da6;
+
+body {
+  background-color: $dark-theme-bg;
+  font-family: $font-main;
+  //overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+h2 {
+  font-family: $font-main;
+  font-size: 4rem;
+  font-weight: 600;
+  color: $dark-text-blue;
+  margin: 0;
+}
+
+.navbar {
+  width: 100%;
+  padding: 2.5rem;
+  font-size: 2.5rem;
+  position: fixed;
+  background-color: $dark-theme-bg;
+  z-index: 5;
+}
+.navbar a {
+  color: white;
+}
+.under-nav {
+  padding: 2.5rem;
+  font-size: 2.5rem;
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  padding: 3rem;
+}
+
+.page-header {
+  margin: 0;
+  padding: 10rem auto;
+  background-color: lightblue;
+}
+.page-header-h1 {
+  font-size: 5.2rem;
+  text-align: center;
+  color: $dark-text-blue;
+}
+
+.section-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 4rem 0 1.2rem 0;
+}
+.display-section-h2 {
+}
+.see-all {
+  color: $dark-text-blue;
+  font-size: 1.8rem;
+  text-decoration: none;
+  margin: 0 2rem;
+}
+.see-all:hover {
+  cursor: pointer;
+}
+
+.display-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: $dark-theme-light;
+  border-radius: 2rem;
+  padding: 1rem;
+  //border: 1px solid green;
+}
+#top-seasonals-entirety {
+}
+
+.card {
+  width: 10.97vw;
+  //height: 45rem;
+  font-size: 1.6rem;
+  position: relative;
+  border-radius: 1rem;
+  border: 4px solid $dark-theme-light;
+}
+.card:hover {
+  background-color: $dark-theme-hover;
+  border: 4px solid #555555;
+}
+.card-rating {
+  position: absolute;
+  top: 0;
+  margin: 0;
+  padding: 0.5rem;
+  background-color: #171717b3;
+  border-radius: 0 0 5px 0;
+}
+.card-img {
+  width: 100%;
+}
+.card-text {
+  width: 100%;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.card-title {
+  width: 100%;
+  //height: 5rem;
+
+  //MAKE ELLIPSIS!!!!!!!!!!!!!!!!!!!!!!!#202020
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  text-align: center;
+  margin: 1rem;
+  color: $dark-text-blue;
+}
+.card-episodes {
+  text-align: center;
+  margin: 0 auto 1rem auto;
+  color: $dark-text-gray;
+}
+
+//Search section
+.search-section {
+  background-color: #313e49;
+  margin-bottom: 2rem;
+}
+.search-form {
+  margin: 1rem 0;
+}
+.search-area {
+  height: 4rem;
+  width: 40rem;
+  max-width: 40rem;
+  display: inline;
+  font-size: 1.8rem;
+  color: white;
+  background-color: $dark-theme-light;
+  border: 2px solid rgba(255, 255, 255, 0.11);
+  border-radius: 5px;
+  text-transform: capitalize;
+
+  padding: 0.6rem 1.2rem;
+}
+.search-results {
+  display: none;
+}
+/* .loading {
+  font-size: 1.8rem;
+} */
+.loading-symbol {
+  font-size: 5rem;
+}
+#loading-span {
+  margin: 2rem 0;
+}
+.submit-button {
+  font-size: 2.25rem;
+  background-color: transparent;
+
+  color: #8a8a8acf;
+
+  margin-left: -4rem;
+  text-align: center;
+
+  border: none;
+
+  outline: none;
+}
+.submit-button:hover {
+  cursor: pointer;
+}
+
+//Info page
+.info-page-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  opacity: 0;
+
+  transition: 0.5s ease-in-out;
+
+  display: flex;
+  flex-direction: column;
+  //z-index: -1;
+  //opacity: 0;
+
+  //border: 2px solid green;
+}
+
+.card-info {
+  //border: 2px solid pink;
+  width: 70vw;
+  //height: 91%;
+  margin: auto;
+  display: flex;
+  padding: 3rem 0;
+}
+
+.info-left-panel {
+  width: 18%;
+}
+.info-left-panel > * {
+  width: 100%;
+  font-size: 1.6rem;
+  margin: 0;
+}
+.info-left-panel > p {
+  margin-top: 0.5rem;
+}
+.info-left-panel > a {
+  margin-top: 0.5rem;
+  color: $dark-text-blue;
+}
+.info-right-panel {
+  padding-left: 4rem;
+  display: flex;
+  flex-direction: column;
+  width: 82%;
+}
+.info-right-panel > p {
+  font-size: 1.6rem;
+}
+.info-songs {
+  //align-self: flex-end;
+  margin-top: 0.5rem;
+  font-size: 1.6rem;
+}
+.info-endings {
+  margin-bottom: 0;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+@media screen and (max-width: 1200px) {
+  .card-info {
+    width: 90%;
+  }
+}
+
+.close {
+  position: absolute;
+  right: 11rem;
+  top: 14rem;
+  min-width: 66px;
+  min-height: 66px;
+  opacity: 0.4;
+}
+.close:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.close:before,
+.close:after {
+  position: absolute;
+  left: 3rem;
+  content: " ";
+  height: 66px;
+  width: 4px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+//FIND A WAY TO FIX NO SCROLL WHEN THERE IS EXTRA INFORMATION
+
+//
+/* .top-rated {
+  margin: 1rem auto 2rem auto;
+  text-align: center;
+  font-size: 3.8rem;
+}
+.movie-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 90vw;
+  background-color: white;
+  margin: 1rem auto;
+  padding: 3rem auto;
+  align-items: center;
+}
+.movie-card {
+  height: 65vh;
+  width: 20vw;
+  margin: 0 auto;
+  position: relative;
+  margin: 2rem auto;
+}
+.movie-card-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  //background-image: url("https://image.tmdb.org/t/p/w300/r7vmZjiyZw9rpJMQJdXpjgiCOk9.jpg");
+  background-position: center;
+  z-index: 3;
+  transition: all 0.3s;
+}
+.poster {
+  width: 100%;
+  height: 100%;
+}
+.movie-card-back {
+  transition: all 0.3s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  background-color: rgba(33, 33, 33, 0.8);
+  width: 100%;
+  height: 100%;
+}
+.movie-card-header {
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  margin: 1rem auto;
+
+  text-align: center;
+}
+.score-box,
+.release-box {
+  text-align: center;
+}
+
+.movie-genres {
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.movie-genre {
+  list-style: none;
+}
+.user-score {
+  font-size: 2rem;
+}
+.release-date {
+  font-size: 2rem;
+}
+
+.movie-card:hover .movie-card-front {
+  z-index: 1;
+}
+.movie-card:hover .movie-card-back {
+  z-index: 3;
+  display: flex;
+}
+.test {
+  color: black;
+  font-size: 3rem;
+} */
