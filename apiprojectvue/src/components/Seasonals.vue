@@ -1,29 +1,53 @@
 <template>
-  <div class="section-text">
-    <h2 class="top-seasonals-h2 display-section-h2">Seasonals</h2>
-    <!-- <card v-bind:seasonalsList="seasonalsList"></card> -->
-    <div class="top-seasonals display-section">
+  <div>
+    <div class="section-text">
+      <h2 class="top-seasonals-h2 display-section-h2">Seasonals</h2>
+      <p
+        class="see-all"
+        id="see-all-top-seasonals"
+        v-on:click="component = 'SeasonalFirstSix'"
+      >
+        See Top 50
+      </p>
+      <!-- <card v-bind:seasonalsList="seasonalsList"></card> -->
+    </div>
+
+    <!--     <component
+      v-bind:is="SeasonalFirstSix"
+      v-bind:seasonalsFirstSix="seasonalsFirstSix"
+    ></component> -->
+    <seasonal-first-six
+      v-bind:seasonalsFirstSix="seasonalsFirstSix"
+    ></seasonal-first-six>
+
+    <!--     <div class="top-seasonals display-section">
       <div v-for="seasonal in seasonalsList" :key="seasonal.title" class="card">
         <p class="card-rating">{{ seasonal.score }}/10</p>
         <img class="card-img" v-bind:src="seasonal.image_url" alt="" />
+
         <p class="card-title">{{ seasonal.title }}</p>
         <p class="card-episodes">{{ seasonal.episodes }} episodes</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-//import Card from "./Card.vue";
+import SeasonalFirstSix from "../components/SeasonalFirstSix.vue";
 
 export default {
-  //components: { Card },
   name: "Seasonals",
+  components: {
+    SeasonalFirstSix,
+  },
 
   data() {
     return {
       seasonalsList: [],
       seasonalsFirstSix: [],
+      component: {
+        SeasonalFirstSix,
+      },
     };
   },
   created: function () {
@@ -50,7 +74,36 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss">
+.section-text {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 4rem 0 1.2rem 0;
+}
+
+.see-all {
+  color: #7fc3ff;
+  font-size: 1.8rem;
+  text-decoration: none;
+  margin: 0 2rem;
+}
+.see-all:hover {
+  cursor: pointer;
+}
+
+.display-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #202020;
+  border-radius: 2rem;
+  padding: 1rem;
+  //border: 1px solid green;
+}
+
 .card {
   width: 10.97vw;
   /* height: 45rem; */

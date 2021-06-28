@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h2>HOME</h2>
-    <seasonals></seasonals>
+    <seasonals> </seasonals>
   </div>
 </template>
 
@@ -16,3 +16,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.home {
+  display: flex;
+  flex-direction: column;
+}
+</style>
