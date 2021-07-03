@@ -2,7 +2,11 @@
   <div class="seasonals-section">
     <div class="section-text">
       <h2 id="seasonals-header" class="section-header">Seasonals</h2>
-      <p v-on:click="showComponent = SeasonalsCardsAll" class="see-more-btn">
+      <p
+        v-on:click="changeShowComponent"
+        class="see-more-btn"
+        id="seasonals-see-more"
+      >
         See All
       </p>
     </div>
@@ -39,6 +43,15 @@ export default {
     /* this.fetchSeasonalsData(); */
   },
   methods: {
+    changeShowComponent: function () {
+      if (this.showComponent === SeasonalsCardsSix) {
+        this.showComponent = SeasonalsCardsAll;
+        document.getElementById("seasonals-see-more").innerHTML = "See Less";
+      } else {
+        this.showComponent = SeasonalsCardsSix;
+        document.getElementById("seasonals-see-more").innerHTML = "See More";
+      }
+    },
     /*     fetchSeasonalsData: async function () {
       try {
         const response = await fetch(

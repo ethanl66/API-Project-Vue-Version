@@ -17,4 +17,8 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.home {
+  height: 101vh;
+}
+</style>
