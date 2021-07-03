@@ -28,5 +28,9 @@
       color: #42b983;
     }
   }
+
+  * {
+    box-sizing: border-box;
+  }
 }
 </style>
