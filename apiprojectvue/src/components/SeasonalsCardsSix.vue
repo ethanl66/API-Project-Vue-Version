@@ -8,12 +8,12 @@
           class="card"
           v-on:click="clickedId = seasonal.mal_id"
         >
-          <p>Rating: {{ seasonal.score }}</p>
-          <img :src="seasonal.image_url" alt="" />
+          <p class="card-data" id="card-rating">{{ seasonal.score }}/10</p>
+          <img class="card-img" :src="seasonal.image_url" alt="" />
           <ul class="card-textarea">
-            <li>{{ seasonal.title }}</li>
-            <li>Episodes: {{ seasonal.episodes }}</li>
-            <li>{{ seasonal.members }} people watching</li>
+            <li id="card-title">{{ seasonal.title }}</li>
+            <li class="card-data">Episodes: {{ seasonal.episodes }}</li>
+            <li class="card-data">{{ seasonal.members }} people watching</li>
           </ul>
         </div>
       </router-link>
@@ -126,6 +126,12 @@ h2 {
   padding: 0;
   margin: 0.5rem;
   margin-bottom: 1rem;
+}
+#card-title {
+  color: #7fc3ff;
+}
+.card-data {
+  color: #839da6;
 }
 .card-textarea > li {
   margin: 0;

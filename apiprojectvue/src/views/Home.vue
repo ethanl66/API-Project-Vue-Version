@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Find Anime</h1>
+    <h1 id="find-anime">Find Anime</h1>
     <seasonals></seasonals>
   </div>
 </template>
@@ -19,6 +19,7 @@ export default {
 
 <style lang="scss">
 .home {
-  height: 101vh;
+  min-height: 101vh;
+  padding-top: 4rem;
 }
 </style>

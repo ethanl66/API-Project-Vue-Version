@@ -93,17 +93,19 @@ p {
 }
 h1 {
   font-size: 6rem;
+  color: #7fc3ff;
 }
 h2 {
   font-size: 5rem;
+  color: #7fc3ff;
 }
 
 .seasonals-section {
   width: 76vw;
   margin: auto;
-  background-color: gainsboro;
-  display: inline-block;
   margin-top: 4rem;
+  background-color: #202020;
+  //display: inline-block;
   padding: 2rem;
 }
 
@@ -116,6 +118,7 @@ h2 {
 .see-more-btn {
   font-size: 1.8rem;
   margin: 0 3rem 0 3rem;
+  color: #7fc3ff;
 }
 .see-more-btn:hover {
   cursor: pointer;
@@ -128,12 +131,28 @@ h2 {
   justify-content: center;
 }
 .card {
-  display: inline-block;
+  //display: inline-block;
   width: 12vw;
-  border: 1px solid gainsboro;
+  border: 4px solid #202020;
+  padding: 4px;
+  position: relative;
 }
 .card:hover {
-  border: 1px solid black;
+  background-color: #383838;
+  border: 4px solid #555555;
+}
+#card-rating {
+  position: absolute;
+  top: 4px;
+  margin: 0;
+  padding: 0.5rem;
+  background-color: hsla(0, 0%, 9%, 0.7);
+  color: #edf1f5;
+  border-radius: 0 0 5px 0;
+  text-align: left;
+}
+.card-img {
+  width: 100%;
 }
 .card-textarea {
   display: flex;

@@ -37,7 +37,13 @@
           </ul>
           <!-- INSTEAD OF SEPARATE LI TAGS, MAKE INTO 1 SENTENCE -->
 
-          <a :href="singleAnimeData.url">Link to MAL</a>
+          <a
+            :href="singleAnimeData.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="link-to-mal"
+            >Link to MAL</a
+          >
         </ul>
       </div>
       <div class="info-right-panel">
@@ -139,28 +145,30 @@ a,
 li,
 p {
   font-size: 1.6rem;
+  color: #edf1f5;
 }
 
 .whole-page {
   display: flex;
   flex-direction: column;
   width: 75vw;
-  margin: 10rem auto;
+  margin: auto;
+  min-height: 100vh;
 }
 .back-to-home {
+  text-decoration: none;
   font-size: 2rem;
   background-color: red;
   width: 20rem;
   padding: 1rem;
   text-align: center;
 
-  text-decoration: none;
   color: white;
 }
 
 .anime-info-page {
   display: flex;
-  background-color: lightblue;
+  background-color: #191919;
 }
 
 .info-right-panel {
@@ -173,6 +181,10 @@ p {
 }
 .left-panel-info {
   padding: 1rem;
+}
+#link-to-mal {
+  color: #7fc3ff;
+  text-decoration: none;
 }
 
 .flex-grow-1 {
