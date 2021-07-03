@@ -10,8 +10,10 @@
         See All
       </p>
     </div>
+
     <component v-bind:is="showComponent"></component>
 
+    <!-- <component v-bind:is="showComponent"></component> -->
     <!--  -->
   </div>
 </template>
