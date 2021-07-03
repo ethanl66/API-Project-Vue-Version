@@ -1,11 +1,11 @@
 <template>
-  <div class="seasonals-section display-section">
+  <div class="upcoming-section display-section">
     <div class="section-text">
-      <h2 id="seasonals-header" class="section-header">Seasonals</h2>
+      <h2 id="upcoming-header" class="section-header">Upcoming</h2>
       <p
         v-on:click="changeShowComponent"
         class="see-more-btn"
-        id="seasonals-see-more"
+        id="upcoming-see-more"
       >
         See All
       </p>
@@ -19,17 +19,17 @@
 </template>
 
 <script>
-import SeasonalsCardsSix from "./SeasonalsCardsSix.vue";
-import SeasonalsCardsAll from "./SeasonalsCardsAll.vue";
+import UpcomingCardsSix from "./UpcomingCardsSix.vue";
+import UpcomingCardsAll from "./UpcomingCardsAll.vue";
 
 export default {
-  name: "Seasonals",
+  name: "Upcoming",
   props: {},
-  components: { SeasonalsCardsSix, SeasonalsCardsAll },
+  components: { UpcomingCardsSix, UpcomingCardsAll },
   data() {
     return {
       /*      seasonalsData: [], */
-      showComponent: SeasonalsCardsSix,
+      showComponent: UpcomingCardsSix,
     };
   },
   computed: {
@@ -46,12 +46,12 @@ export default {
   },
   methods: {
     changeShowComponent: function () {
-      if (this.showComponent === SeasonalsCardsSix) {
-        this.showComponent = SeasonalsCardsAll;
-        document.getElementById("seasonals-see-more").innerHTML = "See Less";
+      if (this.showComponent === UpcomingCardsSix) {
+        this.showComponent = UpcomingCardsAll;
+        document.getElementById("upcoming-see-more").innerHTML = "See Less";
       } else {
-        this.showComponent = SeasonalsCardsSix;
-        document.getElementById("seasonals-see-more").innerHTML = "See More";
+        this.showComponent = UpcomingCardsSix;
+        document.getElementById("upcoming-see-more").innerHTML = "See More";
       }
     },
     /*     fetchSeasonalsData: async function () {
@@ -100,7 +100,7 @@ h2 {
   color: #7fc3ff;
 }
 
-.display-section {
+.upcoming-section {
   width: 76vw;
   margin: auto;
   margin-top: 4rem;

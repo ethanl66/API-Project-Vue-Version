@@ -3,17 +3,17 @@
     <section class="card-holder">
       <router-link :to="animePath" class="router-link">
         <div
-          v-for="seasonal in seasonalsData"
-          :key="seasonal"
+          v-for="upcoming in upcomingData"
+          :key="upcoming"
           class="card"
-          v-on:click="clickedId = seasonal.mal_id"
+          v-on:click="clickedId = upcoming.mal_id"
         >
-          <p class="card-data" id="card-rating">{{ seasonal.score }}/10</p>
-          <img class="card-img" :src="seasonal.image_url" alt="" />
+          <p class="card-data" id="card-rating">{{ upcoming.score }}/10</p>
+          <img class="card-img" :src="upcoming.image_url" alt="" />
           <ul class="card-textarea">
-            <li id="card-title">{{ seasonal.title }}</li>
-            <li class="card-data">Episodes: {{ seasonal.episodes }}</li>
-            <li class="card-data">{{ seasonal.members }} people watching</li>
+            <li id="card-title">{{ upcoming.title }}</li>
+            <li class="card-data">Episodes: {{ upcoming.episodes }}</li>
+            <li class="card-data">{{ upcoming.members }} people watching</li>
           </ul>
         </div>
       </router-link>
@@ -23,11 +23,11 @@
 
 <script>
 export default {
-  name: "SeasonalsCardsAll",
+  name: "UpcomingCardsAll",
   props: {},
   data() {
     return {
-      seasonalsData: [],
+      upcomingData: [],
       clickedId: "",
     };
   },
@@ -37,22 +37,22 @@ export default {
     },
   },
   created: function () {
-    this.fetchSeasonalsData();
+    this.fetchupcomingData();
   },
   methods: {
-    fetchSeasonalsData: async function () {
+    fetchupcomingData: async function () {
       try {
         const response = await fetch(
-          "https://api.jikan.moe/v3/search/anime?status=airing&type=tv&start_date=2021-02-01&sort=desc&order_by=members&limit=50"
+          "https://api.jikan.moe/v3/top/anime/1/upcoming"
         );
         const data = await response.json();
-        this.seasonalsData = data.results;
-        //console.log(data.results);
+        this.upcomingData = data.top;
+        //console.log(data.top);
 
         //Ternary operator for null episodes
       } catch (error) {
         console.log(error);
-        alert("Fetch failed for top seasonals.");
+        alert("Fetch failed for top upcoming.");
       }
     },
     /*  onClickTemp: function () {
@@ -88,7 +88,7 @@ h2 {
   font-size: 5rem;
 }
 
-.seasonals-section {
+.upcoming-section {
   width: 73vw;
   margin: auto;
 }
