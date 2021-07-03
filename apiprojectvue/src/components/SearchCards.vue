@@ -1,19 +1,20 @@
 <template>
   <div>
     <section class="card-holder">
+      <h1>{{ searchedData }}</h1>
       <router-link :to="animePath" class="router-link">
         <div
-          v-for="upcoming in upcomingData.slice(0, 6)"
-          :key="upcoming"
+          v-for="searched in searchedData"
+          :key="searched"
           class="card"
-          v-on:click="clickedId = upcoming.mal_id"
+          v-on:click="clickedId = searched.mal_id"
         >
-          <p class="card-data" id="card-rating">{{ upcoming.score }}/10</p>
-          <img class="card-img" :src="upcoming.image_url" alt="" />
+          <p class="card-data" id="card-rating">{{ searched.score }}/10</p>
+          <img class="card-img" :src="searched.image_url" alt="" />
           <ul class="card-textarea">
-            <li id="card-title">{{ upcoming.title }}</li>
-            <li class="card-data">Episodes: {{ upcoming.episodes }}</li>
-            <li class="card-data">{{ upcoming.members }} people watching</li>
+            <li id="card-title">{{ searched.title }}</li>
+            <li class="card-data">Episodes: {{ searched.episodes }}</li>
+            <li class="card-data">{{ searched.members }} people watching</li>
           </ul>
         </div>
       </router-link>
@@ -23,11 +24,10 @@
 
 <script>
 export default {
-  name: "UpcomingCardsSix",
-  props: {},
+  name: "searchCards",
+  props: ["searchedData"],
   data() {
     return {
-      upcomingData: [],
       clickedId: "",
     };
   },
@@ -36,30 +36,8 @@ export default {
       return `/anime/${this.clickedId}`;
     },
   },
-  created: function () {
-    this.fetchupcomingData();
-  },
-  methods: {
-    fetchupcomingData: async function () {
-      try {
-        const response = await fetch(
-          "https://api.jikan.moe/v3/top/anime/1/upcoming"
-        );
-        const data = await response.json();
-        this.upcomingData = data.top;
-        //console.log(data.top);
-
-        //Ternary operator for null episodes
-      } catch (error) {
-        console.log(error);
-        alert("Fetch failed for top upcoming.");
-      }
-    },
-    /*  onClickTemp: function () {
-      this.clickedId = target.dataset.malid;
-      console.log(this.clickedId);
-    }, */
-  },
+  created: function () {},
+  methods: {},
 };
 </script>
 
@@ -88,7 +66,7 @@ h2 {
   font-size: 5rem;
 }
 
-.upcoming-section {
+.searched-section {
   width: 73vw;
   margin: auto;
 }
