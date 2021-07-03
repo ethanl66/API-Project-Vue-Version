@@ -111,6 +111,9 @@ h2 {
   font-size: 1.8rem;
   margin: 0 3rem 0 3rem;
 }
+.see-more-btn:hover {
+  cursor: pointer;
+}
 
 .card-holder {
   display: flex;
@@ -133,7 +136,7 @@ h2 {
 
   padding: 0;
   margin: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 .card-textarea > li {
   margin: 0;
