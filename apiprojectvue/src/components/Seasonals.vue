@@ -97,15 +97,19 @@ h2 {
 }
 
 .seasonals-section {
-  width: 73vw;
+  width: 76vw;
   margin: auto;
+  background-color: gainsboro;
+  display: inline-block;
+  margin-top: 4rem;
+  padding: 2rem;
 }
 
 .section-text {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin: 4rem 0 2rem;
+  margin: 0 0 2rem;
 }
 .see-more-btn {
   font-size: 1.8rem;
@@ -119,11 +123,12 @@ h2 {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .card {
   display: inline-block;
   width: 12vw;
-  border: 1px solid white;
+  border: 1px solid gainsboro;
 }
 .card:hover {
   border: 1px solid black;
