@@ -7,7 +7,6 @@
           :key="seasonal"
           class="card"
           v-on:click="clickedId = seasonal.mal_id"
-          :data-malid="seasonal.mal_id"
         >
           <p>Rating: {{ seasonal.score }}</p>
           <img :src="seasonal.image_url" alt="" />
@@ -48,7 +47,7 @@ export default {
         );
         const data = await response.json();
         this.seasonalsData = data.results;
-        console.log(data.results);
+        //console.log(data.results);
 
         //Ternary operator for null episodes
       } catch (error) {

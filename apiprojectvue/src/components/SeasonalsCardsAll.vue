@@ -1,27 +1,42 @@
 <template>
-  <section class="card-holder">
-    <div v-for="seasonal in seasonalsData" :key="seasonal" class="card">
-      <p>Rating: {{ seasonal.score }}</p>
-      <img :src="seasonal.image_url" alt="" />
-      <ul class="card-textarea">
-        <li>{{ seasonal.title }}</li>
-        <li>Episodes: {{ seasonal.episodes }}</li>
-        <li>{{ seasonal.members }} people watching</li>
-      </ul>
-    </div>
-  </section>
+  <div>
+    <section class="card-holder">
+      <router-link :to="animePath" class="router-link">
+        <div
+          v-for="seasonal in seasonalsData"
+          :key="seasonal"
+          class="card"
+          v-on:click="clickedId = seasonal.mal_id"
+          :data-malid="seasonal.mal_id"
+        >
+          <p>Rating: {{ seasonal.score }}</p>
+          <img :src="seasonal.image_url" alt="" />
+          <ul class="card-textarea">
+            <li>{{ seasonal.title }}</li>
+            <li>Episodes: {{ seasonal.episodes }}</li>
+            <li>{{ seasonal.members }} people watching</li>
+          </ul>
+        </div>
+      </router-link>
+    </section>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "SeasonalsCardsAll",
+  name: "SeasonalsCardsSix",
   props: {},
   data() {
     return {
       seasonalsData: [],
+      clickedId: "",
     };
   },
-  computed: {},
+  computed: {
+    animePath: function () {
+      return `/anime/${this.clickedId}`;
+    },
+  },
   created: function () {
     this.fetchSeasonalsData();
   },
@@ -41,6 +56,10 @@ export default {
         alert("Fetch failed for top seasonals.");
       }
     },
+    /*  onClickTemp: function () {
+      this.clickedId = target.dataset.malid;
+      console.log(this.clickedId);
+    }, */
   },
 };
 </script>
@@ -111,5 +130,10 @@ h2 {
 }
 .card-textarea > li {
   margin: 0;
+}
+
+.router-link {
+  text-decoration: none;
+  color: black;
 }
 </style>
