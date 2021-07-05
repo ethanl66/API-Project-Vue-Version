@@ -2,8 +2,11 @@
   <div>
     <section class="card-holder">
       <h1>{{ searchedData }}</h1>
+      <ul v-for="result in searchedData" :key="result">
+        <p :style="{ color: white }">, {{ result.title }}</p>
+      </ul>
       <router-link :to="animePath" class="router-link">
-        <div
+        <!--         <div
           v-for="searched in searchedData"
           :key="searched"
           class="card"
@@ -16,7 +19,7 @@
             <li class="card-data">Episodes: {{ searched.episodes }}</li>
             <li class="card-data">{{ searched.members }} people watching</li>
           </ul>
-        </div>
+        </div> -->
       </router-link>
     </section>
   </div>

@@ -37,6 +37,7 @@ export default {
   data() {
     return {
       searchedData: [],
+      white: "white",
     };
   },
   computed: {},
@@ -57,7 +58,7 @@ export default {
         const data = await response.json();
         //console.log(data.results);
         this.searchedData = data.results;
-        console.log(this.searchedData);
+        //console.log(this.searchedData);
 
         //document.getElementById("search-results").innerHTML = "";
       } catch (error) {
