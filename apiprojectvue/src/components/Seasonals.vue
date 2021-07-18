@@ -1,7 +1,7 @@
 <template>
   <div class="seasonals-section display-section">
     <div class="section-text">
-      <h2 id="seasonals-header" class="section-header">Seasonals</h2>
+      <h2 id="seasonals-header" class="section-header">Airing Now</h2>
       <p
         v-on:click="changeShowComponent"
         class="see-more-btn"

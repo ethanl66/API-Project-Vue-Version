@@ -1,8 +1,23 @@
 <template>
-  <div class="whole-page">
-    <router-link :to="home">
+  <div class="container">
+    <!--     <router-link :to="home">
       <p class="back-to-home">Back to Main Page</p>
-    </router-link>
+    </router-link> -->
+    <section class="top-panel">
+      <img :src="singleAnimeData.image_url" alt="" class="anime-img" />
+      <div class="top-panel-text">
+        <h2 class="anime-title">{{ singleAnimeData.title }}</h2>
+        <h2 class="anime-title" id="anime-title-english">
+          ({{ singleAnimeData.title_english }})
+        </h2>
+        <p class="anime-synopsis">{{ singleAnimeData.synopsis }}</p>
+      </div>
+    </section>
+  </div>
+  <!-- <div class="whole-page">
+      <router-link :to="home">
+      <p class="back-to-home">Back to Main Page</p>
+    </router-link> 
     <div class="anime-info-page">
       <div class="info-left-panel">
         <img :src="singleAnimeData.image_url" alt="" />
@@ -27,7 +42,7 @@
           <ul v-for="genre in singleAnimeData.genres" :key="genre">
             <li>{{ genre.name }}</li>
           </ul>
-          <!-- INSTEAD OF SEPARATE LI TAGS, MAKE INTO 1 SENTENCE -->
+          INSTEAD OF SEPARATE LI TAGS, MAKE INTO 1 SENTENCE 
 
           <li>Source: {{ singleAnimeData.source }}</li>
 
@@ -35,7 +50,7 @@
           <ul v-for="studio in singleAnimeData.studios" :key="studio">
             <li>{{ studio.name }}</li>
           </ul>
-          <!-- INSTEAD OF SEPARATE LI TAGS, MAKE INTO 1 SENTENCE -->
+          INSTEAD OF SEPARATE LI TAGS, MAKE INTO 1 SENTENCE 
 
           <a
             :href="singleAnimeData.url"
@@ -62,16 +77,8 @@
           </li>
         </ul>
       </div>
-
-      <!--       <p>Rating: {{ singleAnimeData.score }}</p>
-      <img :src="singleAnimeData.image_url" alt="" />
-      <ul class="card-textarea">
-        <li>{{ singleAnimeData.title }}</li>
-        <li>Episodes: {{ singleAnimeData.episodes }}</li>
-        <li>{{ singleAnimeData.members }} people watching</li>
-      </ul> -->
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -136,58 +143,46 @@ export default {
 };
 </script>
 
-<style scoped>
-body,
-* {
-  text-align: left;
-}
-a,
-li,
-p {
-  font-size: 1.6rem;
-  color: #edf1f5;
-}
+<style scoped lang="scss">
+@import url("../assets/main.scss");
 
-.whole-page {
-  display: flex;
-  flex-direction: column;
+.container {
   width: 75vw;
-  margin: auto;
   min-height: 100vh;
-}
-.back-to-home {
-  text-decoration: none;
-  font-size: 2rem;
-  background-color: red;
-  width: 20rem;
-  padding: 1rem;
-  text-align: center;
+  margin: auto;
+  background-color: black;
 
-  color: white;
-}
-
-.anime-info-page {
-  display: flex;
-  background-color: #191919;
-}
-
-.info-right-panel {
-  padding: 2rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+
+.top-panel {
+  display: flex;
+
+  border-radius: 3rem;
+}
+.anime-img {
+  /*   position: absolute; */
+}
+.top-panel-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  justify-content: flex-end;
+
+  padding: 3rem;
+  background-color: var(--surface-color);
 }
 .anime-title {
-  margin-bottom: 2rem;
+  font-size: 3rem;
+  margin: 0;
 }
-.left-panel-info {
-  padding: 1rem;
+#anime-title-english {
+  font-size: 2.5rem;
 }
-#link-to-mal {
-  color: #7fc3ff;
-  text-decoration: none;
-}
-
-.flex-grow-1 {
-  flex-grow: 1;
+.anime-synopsis {
+  margin-top: 2rem;
 }
 </style>
