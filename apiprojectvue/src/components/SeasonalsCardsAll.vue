@@ -1,12 +1,12 @@
 <template>
   <section class="card-holder">
-    <div
-      v-for="seasonal in seasonalsData"
-      :key="seasonal"
-      class="card"
-      v-on:click="clickedId = seasonal.mal_id"
-    >
-      <router-link :to="animePath" class="router-link">
+    <router-link :to="animePath" class="router-link">
+      <div
+        v-for="seasonal in seasonalsData"
+        :key="seasonal"
+        class="card"
+        v-on:click="clickedId = seasonal.mal_id"
+      >
         <p class="card-data" id="card-rating">{{ seasonal.score }}/10</p>
         <img class="card-img" :src="seasonal.image_url" alt="" />
         <ul class="card-textarea">
@@ -14,8 +14,8 @@
           <li class="card-data">Episodes: {{ seasonal.episodes }}</li>
           <li class="card-data">{{ seasonal.members }} people watching</li>
         </ul>
-      </router-link>
-    </div>
+      </div>
+    </router-link>
   </section>
 </template>
 
