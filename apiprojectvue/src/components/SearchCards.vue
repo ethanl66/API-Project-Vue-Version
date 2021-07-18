@@ -1,9 +1,8 @@
 <template>
   <div>
     <section class="card-holder">
-      <h1>{{ searchedData }}</h1>
       <ul v-for="result in searchedData" :key="result">
-        <p :style="{ color: white }">, {{ result.title }}</p>
+        <p>{{ result.title }}</p>
       </ul>
       <router-link :to="animePath" class="router-link">
         <!--         <div
@@ -40,6 +39,7 @@ export default {
     },
   },
   created: function () {},
+  updated: function () {},
   methods: {},
 };
 </script>

@@ -22,22 +22,28 @@
     </section>
 
     <section class="search-results display-section" id="search-results">
-      <search-cards :searchedData="searchedData"></search-cards>
+      <component
+        :is="searchResultsShownComponent"
+        :searchedData="searchedData"
+      ></component>
+      <!-- <search-cards :searchedData="searchedData"></search-cards> -->
     </section>
   </div>
 </template>
 
 <script>
 import searchCards from "./SearchCards.vue";
+import Loading from "./Loading.vue";
 
 export default {
   name: "Search",
   props: [],
-  components: { searchCards },
+  components: { searchCards, Loading },
   data() {
     return {
       searchedData: [],
       white: "white",
+      searchResultsShownComponent: "Loading",
     };
   },
   computed: {},
@@ -45,8 +51,6 @@ export default {
   methods: {
     formSubmit: function () {
       document.getElementById("search-results").style.display = "flex";
-      document.getElementById("search-results").innerHTML +=
-        "<span id='loading-span'><i class='loading-symbol w3-spin fa fa-refresh'></i></span>";
     },
     goSearch: async function () {
       const searchParams = document.getElementById("search-area").value;
@@ -60,10 +64,10 @@ export default {
         this.searchedData = data.results;
         //console.log(this.searchedData);
 
-        //document.getElementById("search-results").innerHTML = "";
+        this.searchResultsShownComponent = "searchCards";
       } catch (error) {
         console.log(error);
-        alert("Fail");
+        alert("Fail fetch call");
       }
     },
   },
@@ -93,7 +97,7 @@ export default {
   padding: 0.6rem 1.2rem;
 }
 .search-results {
-  display: none;
+  /* display: none; */
   flex-wrap: wrap;
   justify-content: center;
 }
