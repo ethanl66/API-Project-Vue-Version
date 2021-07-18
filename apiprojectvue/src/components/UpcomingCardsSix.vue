@@ -1,7 +1,7 @@
 <template>
   <section class="card-holder">
     <div
-      v-for="upcoming in upcomingData.slice(0, 6)"
+      v-for="upcoming in upcomingDataSliced"
       :key="upcoming"
       class="card"
       v-on:click="clickedId = upcoming.mal_id"
@@ -26,6 +26,7 @@ export default {
   data() {
     return {
       upcomingData: [],
+      upcomingDataSliced: [],
       clickedId: "",
     };
   },
@@ -46,6 +47,19 @@ export default {
         const data = await response.json();
         this.upcomingData = data.top;
         //console.log(data.top);
+        if (window.innerWidth > 1300) {
+          this.upcomingDataSliced = data.top.slice(0, 6);
+        } else if (window.innerWidth <= 1300 && window.innerWidth > 1000) {
+          this.upcomingDataSliced = data.top.slice(0, 5);
+        } else if (window.innerWidth <= 1000 && window.innerWidth > 750) {
+          this.upcomingDataSliced = data.top.slice(0, 4);
+        } else if (window.innerWidth <= 750 && window.innerWidth > 500) {
+          this.upcomingDataSliced = data.top.slice(0, 6);
+        } else if (window.innerWidth <= 525) {
+          this.upcomingDataSliced = data.top.slice(0, 6);
+        } else {
+          this.upcomingDataSliced = data.top.slice(0, 1);
+        }
 
         //Ternary operator for null episodes
       } catch (error) {

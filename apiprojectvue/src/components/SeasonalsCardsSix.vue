@@ -1,7 +1,7 @@
 <template>
   <section class="card-holder">
     <div
-      v-for="seasonal in seasonalsData"
+      v-for="seasonal in seasonalsDataSliced"
       :key="seasonal"
       class="card"
       v-on:click="clickedId = seasonal.mal_id"
@@ -26,6 +26,7 @@ export default {
   data() {
     return {
       seasonalsData: [],
+      seasonalsDataSliced: [],
       clickedId: "",
     };
   },
@@ -41,11 +42,25 @@ export default {
     fetchSeasonalsData: async function () {
       try {
         const response = await fetch(
-          "https://api.jikan.moe/v3/search/anime?status=airing&type=tv&start_date=2021-02-01&sort=desc&order_by=members&limit=6"
+          "https://api.jikan.moe/v3/search/anime?status=airing&type=tv&start_date=2021-02-01&sort=desc&order_by=members"
         );
         const data = await response.json();
         this.seasonalsData = data.results;
         //console.log(data.results);
+
+        if (window.innerWidth > 1300) {
+          this.seasonalsDataSliced = data.results.slice(0, 6);
+        } else if (window.innerWidth <= 1300 && window.innerWidth > 1000) {
+          this.seasonalsDataSliced = data.results.slice(0, 5);
+        } else if (window.innerWidth <= 1000 && window.innerWidth > 750) {
+          this.seasonalsDataSliced = data.results.slice(0, 4);
+        } else if (window.innerWidth <= 750 && window.innerWidth > 500) {
+          this.seasonalsDataSliced = data.results.slice(0, 6);
+        } else if (window.innerWidth <= 525) {
+          this.seasonalsDataSliced = data.results.slice(0, 6);
+        } else {
+          this.seasonalsDataSliced = data.results.slice(0, 1);
+        }
 
         //Ternary operator for null episodes
       } catch (error) {
