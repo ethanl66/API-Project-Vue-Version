@@ -5,12 +5,15 @@
     </router-link> -->
     <section class="top-panel">
       <img :src="singleAnimeData.image_url" alt="" class="anime-img" />
-      <div class="top-panel-text">
-        <h2 class="anime-title">{{ singleAnimeData.title }}</h2>
-        <h2 class="anime-title" id="anime-title-english">
-          ({{ singleAnimeData.title_english }})
-        </h2>
-        <p class="anime-synopsis">{{ singleAnimeData.synopsis }}</p>
+      <div class="top-panel-right">
+        <span class="top-panel-right-filler flex-grow-1"></span>
+        <div class="top-panel-text">
+          <h2 class="anime-title">{{ singleAnimeData.title }}</h2>
+          <h2 class="anime-title" id="anime-title-english">
+            ({{ singleAnimeData.title_english }})
+          </h2>
+          <p class="anime-synopsis">{{ singleAnimeData.synopsis }}</p>
+        </div>
       </div>
     </section>
   </div>
@@ -162,18 +165,20 @@ export default {
 
   border-radius: 3rem;
 }
-.anime-img {
-  /*   position: absolute; */
+.flex-grow-1 {
+  flex-grow: 1;
 }
-.top-panel-text {
+.top-panel-right {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  justify-content: flex-end;
-
+  //justify-content: flex-end;
+}
+.top-panel-text {
   padding: 3rem;
   background-color: var(--surface-color);
+  border-radius: 0 3rem 3rem 0;
 }
 .anime-title {
   font-size: 3rem;
