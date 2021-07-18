@@ -1,24 +1,22 @@
 <template>
-  <div>
-    <section class="card-holder">
+  <section class="card-holder">
+    <div
+      v-for="seasonal in seasonalsData"
+      :key="seasonal"
+      class="card"
+      v-on:click="clickedId = seasonal.mal_id"
+    >
       <router-link :to="animePath" class="router-link">
-        <div
-          v-for="seasonal in seasonalsData"
-          :key="seasonal"
-          class="card"
-          v-on:click="clickedId = seasonal.mal_id"
-        >
-          <p class="card-data" id="card-rating">{{ seasonal.score }}/10</p>
-          <img class="card-img" :src="seasonal.image_url" alt="" />
-          <ul class="card-textarea">
-            <li id="card-title">{{ seasonal.title }}</li>
-            <li class="card-data">Episodes: {{ seasonal.episodes }}</li>
-            <li class="card-data">{{ seasonal.members }} people watching</li>
-          </ul>
-        </div>
+        <p class="card-data" id="card-rating">{{ seasonal.score }}/10</p>
+        <img class="card-img" :src="seasonal.image_url" alt="" />
+        <ul class="card-textarea">
+          <li id="card-title">{{ seasonal.title }}</li>
+          <li class="card-data">Episodes: {{ seasonal.episodes }}</li>
+          <li class="card-data">{{ seasonal.members }} people watching</li>
+        </ul>
       </router-link>
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -65,57 +63,25 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-html,
-body,
-* {
-  font-size: 62.5%;
-  margin: 0;
-  padding: 0;
-  //color: white;
-  box-sizing: border-box;
-}
-ul {
-  list-style-type: none;
-}
-li,
-p {
-  font-size: 1.6rem;
-}
-h1 {
-  font-size: 6rem;
-}
-h2 {
-  font-size: 5rem;
-}
-
-.seasonals-section {
-  width: 73vw;
-  margin: auto;
-}
-
-.section-text {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin: 4rem 0 2rem;
-}
-.see-more-btn {
-  font-size: 1.8rem;
-  margin: 0 3rem 0 3rem;
-}
-
 .card-holder {
   display: flex;
-  width: 100%;
+  flex-direction: row;
   flex-wrap: wrap;
+  width: var(--card-holder-width);
+  align-items: stretch;
+  justify-content: center;
 }
 .card {
   display: inline-block;
-  width: 12vw;
-  border: 1px solid white;
+  width: var(--card-width);
+  border: 4px solid var(--surface-color);
+  padding: 4px;
+  position: relative;
+  border-radius: 1rem;
 }
 .card:hover {
-  border: 1px solid black;
+  background-color: var(--card-hover);
+  border: 4px solid var(--card-hover-border);
 }
 .card-textarea {
   display: flex;
@@ -128,17 +94,25 @@ h2 {
   margin-bottom: 1rem;
 }
 #card-title {
-  color: #7fc3ff;
+  color: var(--primary-color);
 }
 .card-data {
-  color: #839da6;
+  color: var(--card-p-text);
 }
 .card-textarea > li {
   margin: 0;
 }
-
-.router-link {
-  text-decoration: none;
-  color: black;
+#card-rating {
+  position: absolute;
+  top: 4px;
+  margin: 0;
+  padding: 0.5rem;
+  background-color: var(--transparent-black);
+  color: var(--card-score-text);
+  border-radius: 0 0 5px 0;
+  text-align: left;
+}
+.card-img {
+  width: 100%;
 }
 </style>

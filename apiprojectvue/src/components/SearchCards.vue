@@ -1,11 +1,12 @@
 <template>
   <div>
     <section class="card-holder">
-      <ul v-for="result in searchedData" :key="result">
+      <h3 v-show="!searchedData" class="no-results">No results</h3>
+      <!--       <ul v-for="result in searchedData" :key="result">
         <p>{{ result.title }}</p>
-      </ul>
+      </ul> -->
       <router-link :to="animePath" class="router-link">
-        <!--         <div
+        <div
           v-for="searched in searchedData"
           :key="searched"
           class="card"
@@ -18,7 +19,7 @@
             <li class="card-data">Episodes: {{ searched.episodes }}</li>
             <li class="card-data">{{ searched.members }} people watching</li>
           </ul>
-        </div> -->
+        </div>
       </router-link>
     </section>
   </div>
@@ -46,80 +47,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-html,
-body,
-* {
-  font-size: 62.5%;
-  margin: 0;
-  padding: 0;
-  //color: white;
-  box-sizing: border-box;
-}
-ul {
-  list-style-type: none;
-}
-li,
-p {
-  font-size: 1.6rem;
-}
-h1 {
-  font-size: 6rem;
-}
-h2 {
-  font-size: 5rem;
-}
+@import url("../assets/main.scss");
 
-.searched-section {
-  width: 73vw;
-  margin: auto;
-}
-
-.section-text {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin: 4rem 0 2rem;
-}
-.see-more-btn {
-  font-size: 1.8rem;
-  margin: 0 3rem 0 3rem;
-}
-
-.card-holder {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-}
-.card {
-  display: inline-block;
-  width: 12vw;
-  border: 1px solid white;
-}
-.card:hover {
-  border: 1px solid black;
-}
-.card-textarea {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  padding: 0;
-  margin: 0.5rem;
-  margin-bottom: 1rem;
-}
-#card-title {
-  color: #7fc3ff;
-}
-.card-data {
-  color: #839da6;
-}
-.card-textarea > li {
-  margin: 0;
-}
-
-.router-link {
-  text-decoration: none;
-  color: black;
+.no-results {
+  font-size: 2.6rem;
+  color: var(--primary-color);
 }
 </style>

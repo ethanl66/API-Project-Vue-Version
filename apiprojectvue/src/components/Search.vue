@@ -27,6 +27,7 @@
         :searchedData="searchedData"
       ></component>
       <!-- <search-cards :searchedData="searchedData"></search-cards> -->
+      <!-- Add v-if searchedData = undefined, then show error message -->
     </section>
   </div>
 </template>
@@ -51,6 +52,7 @@ export default {
   methods: {
     formSubmit: function () {
       document.getElementById("search-results").style.display = "flex";
+      this.searchResultsShownComponent = "Loading";
     },
     goSearch: async function () {
       const searchParams = document.getElementById("search-area").value;
@@ -97,7 +99,7 @@ export default {
   padding: 0.6rem 1.2rem;
 }
 .search-results {
-  /* display: none; */
+  display: none;
   flex-wrap: wrap;
   justify-content: center;
 }

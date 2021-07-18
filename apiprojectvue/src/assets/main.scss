@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap");
+
+:root {
+  /* Colors */
+  --black: #191919;
+  --light-black: #202020;
+  --sky-blue: #7fc3ff;
+  --dark-gray: #383838;
+  --gray: #839da6;
+  --light-gray: #555555;
+  --off-white: #edf1f5;
+  --transparent-black: hsla(0, 0%, 9%, 0.7);
+
+  /* Intentions */
+  --background-color: var(--black);
+  --on-background: ;
+  --surface-color: var(--light-black);
+  --on-surface: ;
+  --primary-color: var(--sky-blue);
+  --on-primary: ;
+  --secondary-color: ;
+  --on-secondary: ;
+  --card-p-text: var(--gray);
+  --card-score-text: var(--off-white);
+  --card-background: var(--transparent-black);
+  --card-hover: var(--dark-gray);
+  --card-hover-border: var(--light-gray);
+  /* Utilities */
+  --section-width: calc(
+    var(--card-holder-width) + (2 * var(--section-padding))
+  );
+  --section-padding: 2rem;
+  --card-holder-width: 72vw;
+  --card-width: calc(var(--card-holder-width) / 6);
+
+  --font: "Manrope", sans-serif;
+}
+
+html,
+body,
+* {
+  font-size: 62.5%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul {
+  list-style-type: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+h1 {
+  font-size: 6rem;
+}
+h2 {
+  font-size: 5rem;
+}
+li,
+p {
+  font-family: var(--font);
+  font-size: 1.6rem;
+  font-weight: 500;
+}

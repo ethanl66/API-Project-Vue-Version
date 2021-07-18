@@ -10,8 +10,6 @@ export default {
 };
 </script>
 
-<style>
-#loading {
-  font-size: 1.6rem;
-}
+<style lang="scss">
+@import url("../assets/main.scss");
 </style>
