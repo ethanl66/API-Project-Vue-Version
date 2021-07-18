@@ -146,39 +146,50 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import url("../assets/main.scss");
+:root {
+  --img-width: 22.5rem;
+  --container-width: 75vw;
+  --top-panel-right-width: calc(var(--container-width) - var(--img-width));
+}
 
 .container {
-  width: 75vw;
+  width: var(--container-width);
   min-height: 100vh;
   margin: auto;
   background-color: black;
 
-  display: flex;
+  /*   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
 }
 
 .top-panel {
   display: flex;
+  width: var(--container-width);
 
   border-radius: 3rem;
+}
+.anime-img {
+  width: var(--img-width);
+  height: auto;
 }
 .flex-grow-1 {
   flex-grow: 1;
 }
 .top-panel-right {
+  width: var(--top-panel-right-width);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  //justify-content: flex-end;
 }
 .top-panel-text {
   padding: 3rem;
   background-color: var(--surface-color);
   border-radius: 0 3rem 3rem 0;
+  width: 100%;
 }
 .anime-title {
   font-size: 3rem;
