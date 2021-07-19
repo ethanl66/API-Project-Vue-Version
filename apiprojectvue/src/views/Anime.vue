@@ -1,4 +1,5 @@
 <template>
+  <!-- VOICE ACTOR[0] FILTER FOR JAPANESE -->
   <div class="container">
     <!--     <router-link :to="home">
       <p class="back-to-home">Back to Main Page</p>
@@ -183,6 +184,46 @@
             </li>
           </ul>
         </section>
+
+        <section class="related-panel">
+          <ul class="related-list">
+            <li class="related-item">Adaptation</li>
+            <li class="related-item">Prequel</li>
+            <li class="related-item">Sequel</li>
+            <li class="related-item">Side Story</li>
+          </ul>
+        </section>
+
+        <p class="character-staff-header">Characters and Staff:</p>
+        <section class="character-staff-panel">
+          <div
+            v-for="character in characterStaff.characters"
+            :key="character"
+            class="character-staff-div"
+          >
+            <div class="chara-img-div">
+              <img :src="character.image_url" alt="" class="chara-img" />
+            </div>
+            <div class="chara-text">
+              <p class="character-staff-item" id="chara-name">
+                {{ character.name }}
+              </p>
+              <p class="character-staff-item" id="chara-role">
+                {{ character.role }}
+              </p>
+              <p class="character-staff-item" id="seiyuu-name">
+                {{ character.voice_actors[0].name }}
+              </p>
+            </div>
+            <div class="chara-img-div">
+              <img
+                :src="character.voice_actors[0].image_url"
+                alt=""
+                class="seiyuu-img"
+              />
+            </div>
+          </div>
+        </section>
       </div>
     </section>
   </div>
@@ -193,6 +234,8 @@ export default {
   data() {
     return {
       singleAnimeData: {},
+      characterStaff: {},
+      recommendations: [],
     };
   },
   computed: {
@@ -209,10 +252,26 @@ export default {
         const response = await fetch(
           `https://api.jikan.moe/v3/anime/${this.$route.params.id}`
         );
-        console.log(`https://api.jikan.moe/v3/anime/${this.$route.params.id}`);
+        //console.log(`https://api.jikan.moe/v3/anime/${this.$route.params.id}`);
         const data = await response.json();
         this.singleAnimeData = data;
         //console.log(data);
+
+        const responseTwo = await fetch(
+          `https://api.jikan.moe/v3/anime/${this.$route.params.id}/characters_staff`
+        );
+        //console.log(`https://api.jikan.moe/v3/anime/${this.$route.params.id}`);
+        const dataTwo = await responseTwo.json();
+        this.characterStaff = dataTwo;
+        //console.log(dataTwo);
+
+        const responseThree = await fetch(
+          `https://api.jikan.moe/v3/anime/${this.$route.params.id}/recommendations`
+        );
+        //console.log(`https://api.jikan.moe/v3/anime/${this.$route.params.id}`);
+        const dataThree = await responseThree.json();
+        this.recommendations = dataThree.recommendations.slice(0, 30);
+        //console.log(dataThree);
 
         /* let studios = "";
         if (data.studios.length === 0) {
@@ -256,6 +315,9 @@ export default {
   --img-width: 22.5rem;
   --container-width: 75vw;
   --top-panel-right-width: calc(var(--container-width) - var(--img-width));
+
+  --left-section-width: 38rem;
+  --right-section-padding-left: 3rem;
 }
 
 .container {
@@ -287,12 +349,15 @@ export default {
   width: var(--container-width);
 }
 .left-section {
-  width: 38rem;
+  width: var(--left-section-width);
 }
 .right-section {
-  /* width: calc(var(--container-width) - var(--img-width)); */
+  width: calc(
+    var(--container-width) - var(--left-section-width) -
+      var(--right-section-padding-left)
+  );
   flex-grow: 1;
-  padding: 0 0 0 3rem;
+  padding-left: var(--right-section-padding-left);
 }
 
 .top-panel {
@@ -342,5 +407,67 @@ export default {
   padding: 1rem 2rem;
   background-color: var(--secondary-color);
   display: inline-block;
+}
+
+.character-staff-panel {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.character-staff-div {
+  display: flex;
+  margin: 0.5rem 1rem;
+  background-color: var(--surface-color);
+  border-radius: 0.5rem;
+  padding: 2rem;
+
+  box-sizing: content-box;
+}
+.chara-img-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chara-img,
+.seiyuu-img {
+  width: 5rem;
+  height: auto;
+}
+.chara-text {
+  width: 22rem;
+  padding: 0 1.2rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.chara-text > p {
+  text-align: left;
+}
+#chara-role {
+  font-size: 1.25rem;
+}
+#seiyuu-name {
+  text-align: right;
+  margin-top: auto;
+}
+
+.recommendations-panel {
+  width: calc(
+    var(--container-width) - var(--left-section-width) -
+      var(--right-section-padding-left)
+  );
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  background-color: var(--surface-color);
+  padding: 3rem;
+  border-radius: 1rem;
+}
+.recommendations-header {
+  text-align: left;
+  margin: 0 0 2rem 0;
+  line-height: 1;
 }
 </style>
