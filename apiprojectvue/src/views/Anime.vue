@@ -224,13 +224,23 @@
             </div>
           </div>
         </section>
+
+        <section class="recommendations-panel">
+          <h2 class="recommendations-header">Recommendations</h2>
+          <recommendation-cards
+            :recommendations="recommendations"
+          ></recommendation-cards>
+        </section>
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import recommendationCards from "../components/RecommendationCards.vue";
+
 export default {
+  components: { recommendationCards },
   data() {
     return {
       singleAnimeData: {},
