@@ -33,6 +33,8 @@
   --card-holder-width: 72vw;
   --card-width: calc(var(--card-holder-width) / 6);
 
+  --li-padding-bottom: 0.5rem;
+
   --font: "Manrope", sans-serif;
 }
 
@@ -70,6 +72,9 @@ span {
   font-size: 1.6rem;
   font-weight: 500;
   color: var(--off-white);
+}
+li {
+  margin-bottom: var(--li-padding-bottom);
 }
 
 @media screen and (max-width: 1600px) {

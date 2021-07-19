@@ -21,208 +21,168 @@
         </div>
       </div>
     </section>
-    <br />
-    <section class="broadcast-panel">
-      <ul class="broadcast-list">
-        <li v-if="singleAnimeData.airing" class="broadcast-item">
-          Currently airing on {{ singleAnimeData.broadcast }}
-        </li>
-        <li
-          v-else-if="singleAnimeData.aired.string == 'Not available'"
-          class="broadcast-item"
-        >
-          Air date: Unknown
-        </li>
-        <li
-          v-else-if="!singleAnimeData.airing && singleAnimeData.premiered"
-          class="broadcast-item"
-        >
-          Air date: {{ singleAnimeData.premiered }}
-        </li>
-        <li v-else-if="singleAnimeData.aired.string" class="broadcast-item">
-          Air Date: {{ singleAnimeData.aired.string }}
-        </li>
 
-        <li v-if="singleAnimeData.duration" class="broadcast-item">
-          Episode duration: {{ singleAnimeData.duration }}
-        </li>
-      </ul>
-    </section>
-    <br />
-    <section class="score-panel">
-      <ul class="score-list">
-        <li v-if="singleAnimeData.rank" class="score-item">
-          Rank: #{{ singleAnimeData.rank }}
-        </li>
-        <li v-if="singleAnimeData.score" class="score-item">
-          Rating: {{ singleAnimeData.score }}/10
-        </li>
-        <li v-if="singleAnimeData.airing" class="score-item">
-          Popularity: {{ singleAnimeData.members }} people watching (#{{
-            singleAnimeData.popularity
-          }})
-        </li>
-        <li
-          v-if="singleAnimeData.status == 'Finished iring'"
-          class="score-item"
-        >
-          Popularity: {{ singleAnimeData.members }} people watched (#{{
-            singleAnimeData.popularity
-          }})
-        </li>
-        <li v-if="singleAnimeData.status == 'Not yet aired'" class="score-item">
-          Popularity: {{ singleAnimeData.members }} planning to watch (#{{
-            singleAnimeData.popularity
-          }})
-        </li>
-      </ul>
-    </section>
-    <br />
-    <section class="anime-desc-panel">
-      <ul class="anime-desc-list">
-        <li class="anime-desc-item">
-          Genres:
-          <span v-for="(genre, index) in singleAnimeData.genres" :key="index">
-            {{ genre.name
-            }}<span v-if="index != singleAnimeData.genres.length - 1">,</span>
-          </span>
-        </li>
-        <li class="anime-desc-item">Source: {{ singleAnimeData.source }}</li>
-        <li v-if="singleAnimeData.rating != 'None'" class="anime-desc-item">
-          {{ singleAnimeData.rating }}
-        </li>
-      </ul>
-    </section>
-    <br />
-    <section class="studios-panel">
-      <ul class="studios-list">
-        <li v-if="singleAnimeData.studios.length == 1" class="studios-item">
-          Studio:
-          <span v-for="(studio, index) in singleAnimeData.studios" :key="index">
-            {{ studio.name
-            }}<span v-if="index != singleAnimeData.studios.length - 1">,</span>
-          </span>
-        </li>
-        <li v-if="singleAnimeData.studios.length > 1" class="studios-item">
-          Studios:
-          <span v-for="(studio, index) in singleAnimeData.studios" :key="index">
-            {{ studio.name
-            }}<span v-if="index != singleAnimeData.studios.length - 1">,</span>
-          </span>
-        </li>
-      </ul>
-    </section>
-    <br />
-    <section class="music-panel">
-      <ul class="songs-list">
-        <li
-          v-if="singleAnimeData.opening_themes.length == 1"
-          class="songs-list-item songs-list-header"
-        >
-          Opening Theme:
-        </li>
-        <li
-          v-if="singleAnimeData.opening_themes.length > 1"
-          class="songs-list-item songs-list-header"
-        >
-          Opening Themes:
-        </li>
-        <li
-          class="songs-list-item"
-          v-for="opening in singleAnimeData.opening_themes"
-          :key="opening"
-        >
-          {{ opening }}
-        </li>
-        <br />
-        <li
-          v-if="singleAnimeData.ending_themes.length == 1"
-          class="songs-list-item songs-list-header"
-        >
-          Ending Theme:
-        </li>
-        <li
-          v-if="singleAnimeData.ending_themes.length > 1"
-          class="songs-list-item songs-list-header"
-        >
-          Ending Themes:
-        </li>
-        <li
-          class="songs-list-item"
-          v-for="ending in singleAnimeData.ending_themes"
-          :key="ending"
-        >
-          {{ ending }}
-        </li>
-      </ul>
+    <section class="main-panel">
+      <div class="left-section">
+        <section class="score-panel panel">
+          <ul class="score-list">
+            <li v-if="singleAnimeData.rank" class="score-item">
+              Rank: #{{ singleAnimeData.rank }}
+            </li>
+            <li v-if="singleAnimeData.score" class="score-item">
+              Rating: {{ singleAnimeData.score }}/10
+            </li>
+            <li v-if="singleAnimeData.airing" class="score-item">
+              Popularity: {{ singleAnimeData.members }} people watching (#{{
+                singleAnimeData.popularity
+              }})
+            </li>
+            <li
+              v-if="singleAnimeData.status == 'Finished iring'"
+              class="score-item"
+            >
+              Popularity: {{ singleAnimeData.members }} people watched (#{{
+                singleAnimeData.popularity
+              }})
+            </li>
+            <li
+              v-if="singleAnimeData.status == 'Not yet aired'"
+              class="score-item"
+            >
+              Popularity: {{ singleAnimeData.members }} planning to watch (#{{
+                singleAnimeData.popularity
+              }})
+            </li>
+          </ul>
+        </section>
+
+        <section class="anime-desc-panel panel">
+          <ul class="anime-desc-list">
+            <li class="anime-desc-item">
+              Genres:
+              <span
+                v-for="(genre, index) in singleAnimeData.genres"
+                :key="index"
+              >
+                {{ genre.name
+                }}<span v-if="index != singleAnimeData.genres.length - 1"
+                  >,</span
+                >
+              </span>
+            </li>
+            <li class="anime-desc-item">
+              Source: {{ singleAnimeData.source }}
+            </li>
+            <li v-if="singleAnimeData.rating != 'None'" class="anime-desc-item">
+              {{ singleAnimeData.rating }}
+            </li>
+          </ul>
+        </section>
+
+        <section class="studios-panel panel">
+          <ul class="studios-list">
+            <li v-if="singleAnimeData.studios.length == 1" class="studios-item">
+              Studio:
+              <span
+                v-for="(studio, index) in singleAnimeData.studios"
+                :key="index"
+              >
+                {{ studio.name
+                }}<span v-if="index != singleAnimeData.studios.length - 1"
+                  >,</span
+                >
+              </span>
+            </li>
+            <li v-if="singleAnimeData.studios.length > 1" class="studios-item">
+              Studios:
+              <span
+                v-for="(studio, index) in singleAnimeData.studios"
+                :key="index"
+              >
+                {{ studio.name
+                }}<span v-if="index != singleAnimeData.studios.length - 1"
+                  >,</span
+                >
+              </span>
+            </li>
+          </ul>
+        </section>
+      </div>
+      <div class="right-section">
+        <section class="broadcast-panel panel">
+          <ul class="broadcast-list">
+            <li v-if="singleAnimeData.airing" class="broadcast-item">
+              Currently airing on {{ singleAnimeData.broadcast }}
+            </li>
+            <li
+              v-else-if="singleAnimeData.aired.string == 'Not available'"
+              class="broadcast-item"
+            >
+              Air date: Unknown
+            </li>
+            <li
+              v-else-if="!singleAnimeData.airing && singleAnimeData.premiered"
+              class="broadcast-item"
+            >
+              Air date: {{ singleAnimeData.premiered }}
+            </li>
+            <li v-else-if="singleAnimeData.aired.string" class="broadcast-item">
+              Air Date: {{ singleAnimeData.aired.string }}
+            </li>
+
+            <li v-if="singleAnimeData.duration" class="broadcast-item">
+              Episode duration: {{ singleAnimeData.duration }}
+            </li>
+          </ul>
+        </section>
+
+        <section class="music-panel panel">
+          <ul class="songs-list">
+            <li
+              v-if="singleAnimeData.opening_themes.length == 1"
+              class="songs-list-item songs-list-header"
+            >
+              Opening Theme:
+            </li>
+            <li
+              v-if="singleAnimeData.opening_themes.length > 1"
+              class="songs-list-item songs-list-header"
+            >
+              Opening Themes:
+            </li>
+            <li
+              class="songs-list-item"
+              v-for="opening in singleAnimeData.opening_themes"
+              :key="opening"
+            >
+              {{ opening }}
+            </li>
+            <br />
+            <li
+              v-if="singleAnimeData.ending_themes.length == 1"
+              class="songs-list-item songs-list-header"
+            >
+              Ending Theme:
+            </li>
+            <li
+              v-if="singleAnimeData.ending_themes.length > 1"
+              class="songs-list-item songs-list-header"
+            >
+              Ending Themes:
+            </li>
+            <li
+              class="songs-list-item"
+              v-for="ending in singleAnimeData.ending_themes"
+              :key="ending"
+            >
+              {{ ending }}
+            </li>
+          </ul>
+        </section>
+      </div>
     </section>
     <!-- LINK TO MAL -->
   </div>
-  <!-- <div class="whole-page">
-      <router-link :to="home">
-      <p class="back-to-home">Back to Main Page</p>
-    </router-link> 
-    <div class="anime-info-page">
-      <div class="info-left-panel">
-        <img :src="singleAnimeData.image_url" alt="" />
-        <ul class="left-panel-info">
-          <li>Score: {{ singleAnimeData.score }}/10</li>
-          <li>Rank: #{{ singleAnimeData.rank }}</li>
-          <li>
-            Popularity: {{ singleAnimeData.members }} (#{{
-              singleAnimeData.popularity
-            }})
-          </li>
-
-          <li>Episodes: {{ singleAnimeData.episodes }}</li>
-          <li>Status: {{ singleAnimeData.status }}</li>
-          <li>Aired: {{ singleAnimeData.aired.string }}</li>
-          <li>
-            Length: {{ singleAnimeData.duration }} ({{ singleAnimeData.type }})
-          </li>
-          <li>Rating {{ singleAnimeData.rating }}</li>
-
-          <li>Genres:</li>
-          <ul v-for="genre in singleAnimeData.genres" :key="genre">
-            <li>{{ genre.name }}</li>
-          </ul>
-          INSTEAD OF SEPARATE LI TAGS, MAKE INTO 1 SENTENCE 
-
-          <li>Source: {{ singleAnimeData.source }}</li>
-
-          <li>Studios:</li>
-          <ul v-for="studio in singleAnimeData.studios" :key="studio">
-            <li>{{ studio.name }}</li>
-          </ul>
-          INSTEAD OF SEPARATE LI TAGS, MAKE INTO 1 SENTENCE 
-
-          <a
-            :href="singleAnimeData.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            id="link-to-mal"
-            >Link to MAL</a
-          >
-        </ul>
-      </div>
-      <div class="info-right-panel">
-        <h2 class="anime-title">{{ singleAnimeData.title }}</h2>
-        <p>{{ singleAnimeData.synopsis }}</p>
-        <span class="flex-grow-1" id="flex-grow-1"></span>
-        <ul class="info-songs" id="info-songs">
-          <li>Opening Themes:</li>
-          <li v-for="opening in singleAnimeData.opening_themes" :key="opening">
-            {{ opening }}
-          </li>
-          <br />
-          <li>Ending Themes:</li>
-          <li v-for="ending in singleAnimeData.ending_themes" :key="ending">
-            {{ ending }}
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div> -->
 </template>
 
 <script>
@@ -307,6 +267,31 @@ export default {
   justify-content: center; */
 }
 
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+
+  background-color: var(--surface-color);
+  padding: 2rem;
+  padding-bottom: calc(2rem - var(--li-padding-bottom));
+  border-radius: 1rem;
+  margin: 3rem 0;
+}
+.main-panel {
+  display: flex;
+  width: var(--container-width);
+}
+.left-section {
+  width: 38rem;
+}
+.right-section {
+  /* width: calc(var(--container-width) - var(--img-width)); */
+  flex-grow: 1;
+  padding: 0 0 0 3rem;
+}
+
 .top-panel {
   display: flex;
   width: var(--container-width);
@@ -343,5 +328,10 @@ export default {
 }
 .anime-synopsis {
   margin-top: 2rem;
+}
+
+.broadcast-panel {
+  align-items: center;
+  text-align: center;
 }
 </style>

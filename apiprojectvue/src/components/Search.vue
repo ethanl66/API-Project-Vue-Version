@@ -1,4 +1,5 @@
 <template>
+  <!-- FOR 2.0: SEARCH BY GENRE FUNCTION!!! -->
   <div>
     <section class="search-section display-section">
       <form
