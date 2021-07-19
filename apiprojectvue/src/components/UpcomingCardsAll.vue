@@ -11,8 +11,11 @@
         <img class="card-img" :src="upcoming.image_url" alt="" />
         <ul class="card-textarea">
           <li id="card-title">{{ upcoming.title }}</li>
-          <li class="card-data">Episodes: {{ upcoming.episodes }}</li>
-          <li class="card-data">{{ upcoming.members }} people watching</li>
+          <li v-if="upcoming.episodes" class="card-data">
+            Episodes: {{ upcoming.episodes }}
+          </li>
+          <!-- <li v-if="!upcoming.episodes" class="card-data">Episodes: ?</li> -->
+          <li class="card-data">{{ upcoming.members }} planning to watch</li>
         </ul>
       </div>
     </router-link>

@@ -9,7 +9,11 @@
         <span class="top-panel-right-filler flex-grow-1"></span>
         <div class="top-panel-text">
           <h2 class="anime-title">{{ singleAnimeData.title }}</h2>
-          <h2 class="anime-title" id="anime-title-english">
+          <h2
+            v-show="singleAnimeData.title_english"
+            class="anime-title"
+            id="anime-title-english"
+          >
             ({{ singleAnimeData.title_english }})
           </h2>
           <p class="anime-synopsis">{{ singleAnimeData.synopsis }}</p>
@@ -158,8 +162,9 @@ export default {
   width: var(--container-width);
   min-height: 100vh;
   margin: auto;
-  background-color: black;
+  padding-top: 4rem;
 
+  /* background-color: black; */
   /*   display: flex;
   flex-direction: column;
   justify-content: center; */
@@ -174,6 +179,7 @@ export default {
 .anime-img {
   width: var(--img-width);
   height: auto;
+  object-fit: cover;
 }
 .flex-grow-1 {
   flex-grow: 1;

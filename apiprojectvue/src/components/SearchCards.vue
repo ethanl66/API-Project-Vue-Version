@@ -17,7 +17,12 @@
           <ul class="card-textarea">
             <li id="card-title">{{ searched.title }}</li>
             <li class="card-data">Episodes: {{ searched.episodes }}</li>
-            <li class="card-data">{{ searched.members }} people watching</li>
+            <li v-if="searched.airing" class="card-data">
+              {{ searched.members }} people watching
+            </li>
+            <li v-if="!searched.airing" class="card-data">
+              {{ searched.members }} people watched
+            </li>
           </ul>
         </div>
       </router-link>
