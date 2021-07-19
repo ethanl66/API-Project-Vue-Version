@@ -185,14 +185,14 @@
           </ul>
         </section>
 
-        <section class="related-panel">
+        <!--         <section class="related-panel">
           <ul class="related-list">
             <li class="related-item">Adaptation</li>
             <li class="related-item">Prequel</li>
             <li class="related-item">Sequel</li>
             <li class="related-item">Side Story</li>
           </ul>
-        </section>
+        </section> -->
 
         <p class="character-staff-header">Characters and Staff:</p>
         <section class="character-staff-panel">
