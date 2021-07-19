@@ -3,6 +3,7 @@
     <!--     <router-link :to="home">
       <p class="back-to-home">Back to Main Page</p>
     </router-link> -->
+
     <section class="top-panel">
       <img :src="singleAnimeData.image_url" alt="" class="anime-img" />
       <div class="top-panel-right">
@@ -20,6 +21,55 @@
         </div>
       </div>
     </section>
+
+    <section class="broadcast-panel">
+      <ul class="broadcast-list">
+        <li v-if="singleAnimeData.airing" class="broadcast-item">
+          Currently airing on {{ singleAnimeData.broadcast }}
+        </li>
+        <li v-if="singleAnimeData.aired.string" class="broadcast-item">
+          Air date: {{ singleAnimeData.aired.string }}
+        </li>
+        <li v-if="singleAnimeData.duration" class="broadcast-item">
+          Episode duration: {{ singleAnimeData.duration }}
+        </li>
+        <li v-if="!singleAnimeData.airing" class="broadcast-item">
+          Aired {{ singleAnimeData.premiered }}
+        </li>
+      </ul>
+    </section>
+
+    <section class="score-panel">
+      <ul class="score-list">
+        <li class="score-item">Rank: #{{ singleAnimeData.rank }}</li>
+        <li class="score-item">Rating: {{ singleAnimeData.score }}/10</li>
+        <li v-if="singleAnimeData.airing" class="score-item">
+          Popularity: {{ singleAnimeData.members }} people watching (#{{
+            singleAnimeData.popularity
+          }})
+        </li>
+        <li v-if="!singleAnimeData.airing" class="score-item">
+          Popularity: {{ singleAnimeData.members }} people watched (#{{
+            singleAnimeData.popularity
+          }})
+        </li>
+      </ul>
+    </section>
+
+    <section class="anime-desc-panel">
+      <ul class="anime-desc-list">
+        <li class="anime-desc item">
+          Genres:
+          <span v-for="(genre, index) in singleAnimeData.genres" :key="index">
+            {{ genre.name
+            }}<span v-if="index != singleAnimeData.genres.length - 1">,</span>
+          </span>
+        </li>
+        <li class="anime-desc item">Source: {{ singleAnimeData.source }}</li>
+        <li class="anime-desc item">{{ singleAnimeData.rating }}</li>
+      </ul>
+    </section>
+    <!-- genre, , rating -->
   </div>
   <!-- <div class="whole-page">
       <router-link :to="home">
