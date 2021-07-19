@@ -10,6 +10,7 @@
   --light-gray: #555555;
   --off-white: #edf1f5;
   --transparent-black: hsla(0, 0%, 9%, 0.7);
+  --dark-orange: #e03400;
 
   /* Intentions */
   --background-color: var(--black);
@@ -18,7 +19,7 @@
   --on-surface: ;
   --primary-color: var(--sky-blue);
   --on-primary: ;
-  --secondary-color: ;
+  --secondary-color: var(--dark-orange);
   --on-secondary: ;
   --card-p-text: var(--gray);
   --card-score-text: var(--off-white);

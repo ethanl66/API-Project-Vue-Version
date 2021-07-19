@@ -107,7 +107,11 @@
             </li>
           </ul>
         </section>
+        <section class="links-section">
+          <p class="link-to-mal">Link to MAL</p>
+        </section>
       </div>
+
       <div class="right-section">
         <section class="broadcast-panel panel">
           <ul class="broadcast-list">
@@ -181,7 +185,6 @@
         </section>
       </div>
     </section>
-    <!-- LINK TO MAL -->
   </div>
 </template>
 
@@ -333,5 +336,11 @@ export default {
 .broadcast-panel {
   align-items: center;
   text-align: center;
+}
+
+.link-to-mal {
+  padding: 1rem 2rem;
+  background-color: var(--secondary-color);
+  display: inline-block;
 }
 </style>
