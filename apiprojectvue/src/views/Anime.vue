@@ -39,7 +39,7 @@
               }})
             </li>
             <li
-              v-if="singleAnimeData.status == 'Finished iring'"
+              v-if="singleAnimeData.status == 'Finished Airing'"
               class="score-item"
             >
               Popularity: {{ singleAnimeData.members }} people watched (#{{
@@ -262,8 +262,36 @@ export default {
         );
         //console.log(`https://api.jikan.moe/v3/anime/${this.$route.params.id}`);
         const dataTwo = await responseTwo.json();
-        this.characterStaff = dataTwo;
         //console.log(dataTwo);
+
+        /*         const dataTwoJapaneseTest = dataTwo.characters.foreach((character) => {
+          character.voice_actors.filter(function (voiceActor) {
+            return voiceActor.language == "Japanese";
+          });
+          console.log(character);
+        });
+        //console.log(dataTwoJapaneseTest); */
+
+        /*     dataTwo.characters.foreach((character) => {
+          console.log(character.name);
+        }); */
+
+        /*        for (let character of dataTwo.characters) {
+          const japaneseVA = function () {
+            const characterArray = Array.from(character);
+            if (characterArray[i].language !== "Japanese") {
+              myArray.splice(i, 1);
+            }
+            console.log(japaneseVA);
+          }; */
+
+        /* const japaneseVA = character.voice_actors.filter(function (
+            voiceActor
+          ) {
+            return voiceActor.language == "Japanese";
+          }); */
+
+        this.characterStaff = dataTwo;
 
         const responseThree = await fetch(
           `https://api.jikan.moe/v3/anime/${this.$route.params.id}/recommendations`
