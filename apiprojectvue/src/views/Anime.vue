@@ -108,8 +108,15 @@
             </li>
           </ul>
         </section>
+
         <section class="links-section">
-          <p class="link-to-mal">Link to MAL</p>
+          <a
+            class="link-to-mal"
+            :href="singleAnimeData.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Link to MAL</a
+          >
         </section>
       </div>
 
@@ -435,6 +442,13 @@ export default {
   padding: 1rem 2rem;
   background-color: var(--secondary-color);
   display: inline-block;
+
+  font-family: var(--font);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--off-white);
+
+  text-decoration: none;
 }
 
 .character-staff-panel {
