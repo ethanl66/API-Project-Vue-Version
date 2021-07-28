@@ -297,6 +297,24 @@ export default {
           ) {
             return voiceActor.language == "Japanese";
           }); */
+        Array.from(dataTwo.characters).forEach((character) => {
+          const characterVAs = character.voice_actors;
+          for (var i = characterVAs.length - 1; i >= 0; --i) {
+            if (characterVAs[i].language !== "Japanese") {
+              characterVAs.splice(i, 1);
+            }
+          }
+          //console.log(characterVAs);
+        });
+
+        /* THIS WORKS
+         const rakuVAs = dataTwo.characters[0].voice_actors;
+        for (var i = rakuVAs.length - 1; i >= 0; --i) {
+          if (rakuVAs[i].language !== "Japanese") {
+            rakuVAs.splice(i, 1);
+          }
+        }
+        console.log(rakuVAs); */
 
         this.characterStaff = dataTwo;
 
