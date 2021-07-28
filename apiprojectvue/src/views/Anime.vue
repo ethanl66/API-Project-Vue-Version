@@ -6,7 +6,36 @@
     </router-link> -->
 
     <section class="top-panel">
-      <img :src="singleAnimeData.image_url" alt="" class="anime-img" />
+      <div class="top-panel-left">
+        <img :src="singleAnimeData.image_url" alt="" class="anime-img" />
+
+        <section class="broadcast-panel panel">
+          <ul class="broadcast-list">
+            <li v-if="singleAnimeData.airing" class="broadcast-item">
+              Currently airing on {{ singleAnimeData.broadcast }}
+            </li>
+            <li
+              v-else-if="singleAnimeData.aired.string == 'Not available'"
+              class="broadcast-item"
+            >
+              Air date: Unknown
+            </li>
+            <li
+              v-else-if="!singleAnimeData.airing && singleAnimeData.premiered"
+              class="broadcast-item"
+            >
+              Air date: {{ singleAnimeData.premiered }}
+            </li>
+            <li v-else-if="singleAnimeData.aired.string" class="broadcast-item">
+              Air Date: {{ singleAnimeData.aired.string }}
+            </li>
+
+            <li v-if="singleAnimeData.duration" class="broadcast-item">
+              Episode duration: {{ singleAnimeData.duration }}
+            </li>
+          </ul>
+        </section>
+      </div>
       <div class="top-panel-right">
         <span class="top-panel-right-filler flex-grow-1"></span>
         <div class="top-panel-text">
@@ -19,6 +48,8 @@
             ({{ singleAnimeData.title_english }})
           </h2>
           <p class="anime-synopsis">{{ singleAnimeData.synopsis }}</p>
+
+          <div class="top-panel-background"></div>
         </div>
       </div>
     </section>
@@ -121,33 +152,6 @@
       </div>
 
       <div class="right-section">
-        <section class="broadcast-panel panel">
-          <ul class="broadcast-list">
-            <li v-if="singleAnimeData.airing" class="broadcast-item">
-              Currently airing on {{ singleAnimeData.broadcast }}
-            </li>
-            <li
-              v-else-if="singleAnimeData.aired.string == 'Not available'"
-              class="broadcast-item"
-            >
-              Air date: Unknown
-            </li>
-            <li
-              v-else-if="!singleAnimeData.airing && singleAnimeData.premiered"
-              class="broadcast-item"
-            >
-              Air date: {{ singleAnimeData.premiered }}
-            </li>
-            <li v-else-if="singleAnimeData.aired.string" class="broadcast-item">
-              Air Date: {{ singleAnimeData.aired.string }}
-            </li>
-
-            <li v-if="singleAnimeData.duration" class="broadcast-item">
-              Episode duration: {{ singleAnimeData.duration }}
-            </li>
-          </ul>
-        </section>
-
         <section class="music-panel panel">
           <ul class="songs-list">
             <li
@@ -169,6 +173,7 @@
             >
               {{ opening }}
             </li>
+            <br />
             <br />
             <li
               v-if="singleAnimeData.ending_themes.length == 1"
@@ -201,7 +206,7 @@
           </ul>
         </section> -->
 
-        <p class="character-staff-header">Characters and Staff:</p>
+        <h3 class="character-staff-header">Characters and Staff:</h3>
         <section class="character-staff-panel">
           <div
             v-for="character in characterStaff"
@@ -367,8 +372,9 @@ export default {
 
 <style lang="scss">
 @import url("../assets/main.scss");
+
 :root {
-  --img-width: 22.5rem;
+  --img-width: 26rem;
   --container-width: 75vw;
   --top-panel-right-width: calc(var(--container-width) - var(--img-width));
 
@@ -380,12 +386,12 @@ export default {
   width: var(--container-width);
   min-height: 100vh;
   margin: auto;
-  padding-top: 4rem;
+  padding: 4rem 0;
 
   /* background-color: black; */
   /*   display: flex;
-  flex-direction: column;
-  justify-content: center; */
+    flex-direction: column;
+    justify-content: center; */
 }
 
 .panel {
@@ -425,10 +431,15 @@ export default {
 .anime-img {
   width: var(--img-width);
   height: auto;
-  object-fit: cover;
+  //object-fit: cover;
+  align-self: center;
 }
 .flex-grow-1 {
   flex-grow: 1;
+}
+.top-panel-left {
+  display: flex;
+  flex-direction: column;
 }
 .top-panel-right {
   width: var(--top-panel-right-width);
@@ -438,7 +449,7 @@ export default {
   text-align: left;
 }
 .top-panel-text {
-  padding: 3rem;
+  padding: 2rem 3rem;
   background-color: var(--surface-color);
   border-radius: 0 3rem 3rem 0;
   width: 100%;
@@ -457,6 +468,9 @@ export default {
 .broadcast-panel {
   align-items: center;
   text-align: center;
+  margin: 0;
+  border-radius: 0 0 0 3rem;
+  width: var(--img-width);
 }
 
 .link-to-mal {
@@ -479,7 +493,7 @@ export default {
 }
 .character-staff-div {
   display: flex;
-  margin: 0.5rem 1rem;
+  margin: 0.5rem;
   background-color: var(--surface-color);
   border-radius: 0.5rem;
   padding: 2rem;
@@ -497,7 +511,7 @@ export default {
   height: auto;
 }
 .chara-text {
-  width: 22rem;
+  width: 17rem;
   padding: 0 1.2rem;
 
   display: flex;
@@ -533,4 +547,180 @@ export default {
   margin: 0 0 2rem 0;
   line-height: 1;
 }
+
+@media screen and (max-width: 1344px) {
+  :root {
+    --left-section-width: var(--img-width);
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .container {
+    width: var(--container-width);
+    min-height: 100vh;
+    margin: auto;
+    padding-top: 4rem;
+
+    /* background-color: black; */
+    /*   display: flex;
+    flex-direction: column;
+    justify-content: center; */
+  }
+
+  .panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+
+    background-color: var(--surface-color);
+    padding: 2rem;
+    padding-bottom: calc(2rem - var(--li-padding-bottom));
+    border-radius: 1rem;
+    margin: 3rem 0;
+  }
+  .main-panel {
+    display: flex;
+    width: var(--container-width);
+  }
+  .left-section {
+    width: var(--left-section-width);
+  }
+  .right-section {
+    width: calc(
+      var(--container-width) - var(--left-section-width) -
+        var(--right-section-padding-left)
+    );
+    flex-grow: 1;
+    padding-left: var(--right-section-padding-left);
+  }
+
+  .top-panel {
+    display: flex;
+    width: var(--container-width);
+
+    border-radius: 3rem;
+  }
+  .anime-img {
+    width: var(--img-width);
+    height: auto;
+    //object-fit: cover;
+    align-self: center;
+  }
+  .flex-grow-1 {
+    flex-grow: 1;
+  }
+  .top-panel-left {
+    display: flex;
+    flex-direction: column;
+  }
+  .top-panel-right {
+    width: var(--top-panel-right-width);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .top-panel-text {
+    padding: 2rem 3rem;
+    background-color: var(--surface-color);
+    border-radius: 0 3rem 3rem 0;
+    width: 100%;
+  }
+  .anime-title {
+    font-size: 3rem;
+    margin: 0;
+  }
+  #anime-title-english {
+    font-size: 2.5rem;
+  }
+  .anime-synopsis {
+    margin-top: 2rem;
+  }
+
+  .broadcast-panel {
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    border-radius: 0 0 0 3rem;
+    width: var(--img-width);
+  }
+
+  .link-to-mal {
+    padding: 1rem 2rem;
+    background-color: var(--secondary-color);
+    display: inline-block;
+
+    font-family: var(--font);
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--off-white);
+
+    text-decoration: none;
+  }
+
+  .character-staff-panel {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .character-staff-div {
+    display: flex;
+    margin: 0.5rem;
+    background-color: var(--surface-color);
+    border-radius: 0.5rem;
+    padding: 2rem;
+
+    box-sizing: content-box;
+  }
+  .chara-img-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .chara-img,
+  .seiyuu-img {
+    width: 5rem;
+    height: auto;
+  }
+  .chara-text {
+    width: 17rem;
+    padding: 0 1.2rem;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chara-text > p {
+    text-align: left;
+  }
+  #chara-role {
+    font-size: 1.25rem;
+  }
+  #seiyuu-name {
+    text-align: right;
+    margin-top: auto;
+  }
+
+  .recommendations-panel {
+    width: calc(
+      var(--container-width) - var(--left-section-width) -
+        var(--right-section-padding-left)
+    );
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    background-color: var(--surface-color);
+    padding: 3rem;
+    border-radius: 1rem;
+  }
+  .recommendations-header {
+    text-align: left;
+    margin: 0 0 2rem 0;
+    line-height: 1;
+  }
+}
+
+//USE DIFFERENT ANIME.VUE FILE FOR MOBILE
 </style>
