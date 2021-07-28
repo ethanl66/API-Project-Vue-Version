@@ -297,7 +297,10 @@ export default {
           ) {
             return voiceActor.language == "Japanese";
           }); */
-        Array.from(dataTwo.characters).forEach((character) => {
+        const dataTwoSliced = dataTwo.characters.slice(0, 24);
+        //console.log(dataTwoSliced);
+
+        Array.from(dataTwoSliced).forEach((character) => {
           const characterVAs = character.voice_actors;
           for (var i = characterVAs.length - 1; i >= 0; --i) {
             if (characterVAs[i].language !== "Japanese") {
@@ -316,7 +319,7 @@ export default {
         }
         console.log(rakuVAs); */
 
-        this.characterStaff = dataTwo;
+        this.characterStaff = dataTwoSliced;
 
         const responseThree = await fetch(
           `https://api.jikan.moe/v3/anime/${this.$route.params.id}/recommendations`
