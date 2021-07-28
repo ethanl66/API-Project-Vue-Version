@@ -204,7 +204,7 @@
         <p class="character-staff-header">Characters and Staff:</p>
         <section class="character-staff-panel">
           <div
-            v-for="character in characterStaff.characters"
+            v-for="character in characterStaff"
             :key="character"
             class="character-staff-div"
           >
