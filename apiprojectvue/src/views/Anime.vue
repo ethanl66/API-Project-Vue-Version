@@ -223,16 +223,25 @@
               <p class="character-staff-item" id="chara-role">
                 {{ character.role }}
               </p>
-              <p class="character-staff-item" id="seiyuu-name">
+              <p
+                v-if="character.voice_actors[0]"
+                class="character-staff-item"
+                id="seiyuu-name"
+              >
                 {{ character.voice_actors[0].name }}
               </p>
             </div>
             <div class="chara-img-div">
               <img
+                v-if="character.voice_actors[0]"
                 :src="character.voice_actors[0].image_url"
                 alt=""
                 class="seiyuu-img"
               />
+              <div
+                class="seiyuu-img-blank"
+                v-if="!character.voice_actors[0]"
+              ></div>
             </div>
           </div>
         </section>
@@ -682,6 +691,10 @@ export default {
   .seiyuu-img {
     width: 5rem;
     height: auto;
+  }
+  .seiyuu-img-blank {
+    width: 5rem;
+    border: 1px solid var(--off-white);
   }
   .chara-text {
     width: 17rem;
