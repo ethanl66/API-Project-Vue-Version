@@ -488,7 +488,7 @@ export default {
   --container-width: 75vw;
   --top-panel-right-width: calc(var(--container-width) - var(--img-width));
 
-  --left-section-width: 38rem;
+  --left-section-width: 35rem;
   --right-section-padding-left: 3rem;
 }
 
@@ -673,6 +673,15 @@ export default {
 @media screen and (max-width: 1344px) {
   :root {
     --left-section-width: var(--img-width);
+  }
+}
+
+@media screen and (max-width: 1191px) {
+  .visibility-hidden {
+    display: none;
+  }
+  .character-staff-header {
+    padding-right: 0;
   }
 }
 
