@@ -1,6 +1,6 @@
 <template>
   <!-- VOICE ACTOR[0] FILTER FOR JAPANESE -->
-  <div class="container">
+  <div class="anime-page-container-desktop">
     <!--     <router-link :to="home">
       <p class="back-to-home">Back to Main Page</p>
     </router-link> -->
@@ -492,7 +492,7 @@ export default {
   --right-section-padding-left: 3rem;
 }
 
-.container {
+.anime-page-container-desktop {
   width: var(--container-width);
   min-height: 100vh;
   margin: auto;
@@ -682,6 +682,15 @@ export default {
   }
   .character-staff-header {
     padding-right: 0;
+  }
+  :root {
+    --container-width: 90vw;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .anime-page-container-desktop {
+    display: none;
   }
 }
 
