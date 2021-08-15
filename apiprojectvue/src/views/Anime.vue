@@ -207,7 +207,29 @@
         </section> -->
 
         <section class="character-staff-header">
-          <h3 class="character-staff-header">Characters and Staff:</h3>
+          <p
+            v-if="showCharacterStaffSeeMore == true"
+            v-on:click="
+              showCharacterStaffRest = true;
+              showCharacterStaffSeeMore = false;
+            "
+            class="see-more-btn visibility-hidden"
+            id="character-staff-see-more"
+          >
+            See More
+          </p>
+          <p
+            v-if="showCharacterStaffSeeMore == false"
+            v-on:click="
+              showCharacterStaffRest = false;
+              showCharacterStaffSeeMore = true;
+            "
+            class="see-more-btn visibility-hidden"
+            id="character-staff-see-less"
+          >
+            See Less
+          </p>
+          <h3>Characters and Staff:</h3>
           <p
             v-if="showCharacterStaffSeeMore == true"
             v-on:click="
@@ -577,14 +599,9 @@ export default {
 .character-staff-header {
   display: flex;
   align-items: baseline;
-  justify-content: center;
+  justify-content: space-between;
   position: relative;
-}
-#character-staff-see-more,
-#character-staff-see-less {
-  position: absolute;
-  top: 30%;
-  left: 84%;
+  padding: 0 2rem;
 }
 .character-staff-panel {
   display: flex;
@@ -647,6 +664,11 @@ export default {
   margin: 0 0 2rem 0;
   line-height: 1;
 }
+.visibility-hidden {
+  visibility: hidden;
+}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
 @media screen and (max-width: 1344px) {
   :root {
