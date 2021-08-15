@@ -241,6 +241,7 @@
               <div
                 class="seiyuu-img-blank"
                 v-if="!character.voice_actors[0]"
+                style="width: 5rem"
               ></div>
             </div>
           </div>
@@ -692,10 +693,10 @@ export default {
     width: 5rem;
     height: auto;
   }
-  .seiyuu-img-blank {
+  /*   .seiyuu-img-blank {
     width: 5rem;
     border: 1px solid var(--off-white);
-  }
+  } */
   .chara-text {
     width: 17rem;
     padding: 0 1.2rem;
