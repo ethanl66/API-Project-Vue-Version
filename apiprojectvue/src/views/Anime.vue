@@ -206,7 +206,31 @@
           </ul>
         </section> -->
 
-        <h3 class="character-staff-header">Characters and Staff:</h3>
+        <section class="character-staff-header">
+          <h3 class="character-staff-header">Characters and Staff:</h3>
+          <p
+            v-if="showCharacterStaffSeeMore == true"
+            v-on:click="
+              showCharacterStaffRest = true;
+              showCharacterStaffSeeMore = false;
+            "
+            class="see-more-btn"
+            id="character-staff-see-more"
+          >
+            See More
+          </p>
+          <p
+            v-if="showCharacterStaffSeeMore == false"
+            v-on:click="
+              showCharacterStaffRest = false;
+              showCharacterStaffSeeMore = true;
+            "
+            class="see-more-btn"
+            id="character-staff-see-less"
+          >
+            See Less
+          </p>
+        </section>
         <section class="character-staff-panel">
           <div
             v-for="character in characterStaff"
@@ -245,6 +269,46 @@
               ></div>
             </div>
           </div>
+
+          <div class="character-staff-panel" v-if="showCharacterStaffRest">
+            <div
+              v-for="character in characterStaffRest"
+              :key="character"
+              class="character-staff-div"
+            >
+              <div class="chara-img-div">
+                <img :src="character.image_url" alt="" class="chara-img" />
+              </div>
+              <div class="chara-text">
+                <p class="character-staff-item" id="chara-name">
+                  {{ character.name }}
+                </p>
+                <p class="character-staff-item" id="chara-role">
+                  {{ character.role }}
+                </p>
+                <p
+                  v-if="character.voice_actors[0]"
+                  class="character-staff-item"
+                  id="seiyuu-name"
+                >
+                  {{ character.voice_actors[0].name }}
+                </p>
+              </div>
+              <div class="chara-img-div">
+                <img
+                  v-if="character.voice_actors[0]"
+                  :src="character.voice_actors[0].image_url"
+                  alt=""
+                  class="seiyuu-img"
+                />
+                <div
+                  class="seiyuu-img-blank"
+                  v-if="!character.voice_actors[0]"
+                  style="width: 5rem"
+                ></div>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
     </section>
@@ -257,6 +321,9 @@ export default {
     return {
       singleAnimeData: {},
       characterStaff: {},
+      showCharacterStaffRest: false,
+      showCharacterStaffSeeMore: true,
+      characterStaffRest: {},
       recommendations: [],
     };
   },
@@ -312,10 +379,20 @@ export default {
           ) {
             return voiceActor.language == "Japanese";
           }); */
-        const dataTwoSliced = dataTwo.characters.slice(0, 24);
-        //console.log(dataTwoSliced);
+        const dataTwoSliced = dataTwo.characters.slice(0, 9);
+        const dataTwoSlicedRest = dataTwo.characters.slice(9, 360);
+        console.log(dataTwoSlicedRest);
 
         Array.from(dataTwoSliced).forEach((character) => {
+          const characterVAs = character.voice_actors;
+          for (var i = characterVAs.length - 1; i >= 0; --i) {
+            if (characterVAs[i].language !== "Japanese") {
+              characterVAs.splice(i, 1);
+            }
+          }
+          //console.log(characterVAs);
+        });
+        Array.from(dataTwoSlicedRest).forEach((character) => {
           const characterVAs = character.voice_actors;
           for (var i = characterVAs.length - 1; i >= 0; --i) {
             if (characterVAs[i].language !== "Japanese") {
@@ -335,6 +412,7 @@ export default {
         console.log(rakuVAs); */
 
         this.characterStaff = dataTwoSliced;
+        this.characterStaffRest = dataTwoSlicedRest;
 
         const responseThree = await fetch(
           `https://api.jikan.moe/v3/anime/${this.$route.params.id}/recommendations`
@@ -373,7 +451,7 @@ export default {
         } */
       } catch (error) {
         console.log(error);
-        alert("Fail");
+        alert("Error");
       }
     },
   },
@@ -496,6 +574,18 @@ export default {
   text-decoration: none;
 }
 
+.character-staff-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  position: relative;
+}
+#character-staff-see-more,
+#character-staff-see-less {
+  position: absolute;
+  top: 30%;
+  left: 84%;
+}
 .character-staff-panel {
   display: flex;
   justify-content: center;
