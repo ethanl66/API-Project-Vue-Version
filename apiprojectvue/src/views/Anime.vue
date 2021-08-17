@@ -252,86 +252,80 @@
         <div class="top-panel-right-mobile">
           <div class="flex-grow-1"></div>
           <div class="top-panel-right-text">
-            <section class="titles-mobile">
-              <h2 class="anime-title-mobile">{{ singleAnimeData.title }}</h2>
-              <h2
-                v-show="singleAnimeData.title_english"
-                class="anime-title-mobile"
-                id="anime-title-english-mobile"
+            <ul class="score-list-mobile">
+              <li v-if="singleAnimeData.rank" class="score-item">
+                Rank: #{{ singleAnimeData.rank }}
+              </li>
+              <li v-if="singleAnimeData.score" class="score-item">
+                Rating: {{ singleAnimeData.score }}/10
+              </li>
+              <li v-if="singleAnimeData.airing" class="score-item">
+                {{ singleAnimeData.members }} people watching (#{{
+                  singleAnimeData.popularity
+                }})
+              </li>
+              <li
+                v-if="singleAnimeData.status == 'Finished Airing'"
+                class="score-item"
               >
-                ({{ singleAnimeData.title_english }})
-              </h2>
-            </section>
+                Popularity: {{ singleAnimeData.members }} people watched (#{{
+                  singleAnimeData.popularity
+                }})
+              </li>
+              <li
+                v-if="singleAnimeData.status == 'Not yet aired'"
+                class="score-item"
+              >
+                Popularity: {{ singleAnimeData.members }} planning to watch (#{{
+                  singleAnimeData.popularity
+                }})
+              </li>
+            </ul>
 
-            <section class="broadcast-panel-mobile mobile-top-section">
-              <ul class="broadcast-list">
-                <li v-if="singleAnimeData.airing" class="broadcast-item">
-                  Currently airing on {{ singleAnimeData.broadcast }}
-                </li>
-                <li
-                  v-else-if="singleAnimeData.aired.string == 'Not available'"
-                  class="broadcast-item"
-                >
-                  Air date: Unknown
-                </li>
-                <li
-                  v-else-if="
-                    !singleAnimeData.airing && singleAnimeData.premiered
-                  "
-                  class="broadcast-item"
-                >
-                  Air date: {{ singleAnimeData.premiered }}
-                </li>
-                <li
-                  v-else-if="singleAnimeData.aired.string"
-                  class="broadcast-item"
-                >
-                  Air Date: {{ singleAnimeData.aired.string }}
-                </li>
+            <ul class="broadcast-list-mobile">
+              <li v-if="singleAnimeData.airing" class="broadcast-item">
+                Currently airing on {{ singleAnimeData.broadcast }}
+              </li>
+              <li
+                v-else-if="singleAnimeData.aired.string == 'Not available'"
+                class="broadcast-item"
+              >
+                Air date: Unknown
+              </li>
+              <li
+                v-else-if="!singleAnimeData.airing && singleAnimeData.premiered"
+                class="broadcast-item"
+              >
+                Air date: {{ singleAnimeData.premiered }}
+              </li>
+              <li
+                v-else-if="singleAnimeData.aired.string"
+                class="broadcast-item"
+              >
+                Air Date: {{ singleAnimeData.aired.string }}
+              </li>
 
-                <li v-if="singleAnimeData.duration" class="broadcast-item">
-                  Episode duration: {{ singleAnimeData.duration }}
-                </li>
+              <li v-if="singleAnimeData.duration" class="broadcast-item">
+                Episode duration: {{ singleAnimeData.duration }}
+              </li>
 
-                <li class="broadcast-item">
-                  {{ singleAnimeData.episodes }} episodes
-                </li>
-              </ul>
-            </section>
+              <li class="broadcast-item">
+                {{ singleAnimeData.episodes }} episodes
+              </li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <section class="score-section-mobile mobile-section">
-        <ul class="score-list">
-          <li v-if="singleAnimeData.rank" class="score-item">
-            Rank: #{{ singleAnimeData.rank }}
-          </li>
-          <li v-if="singleAnimeData.score" class="score-item">
-            Rating: {{ singleAnimeData.score }}/10
-          </li>
-          <li v-if="singleAnimeData.airing" class="score-item">
-            {{ singleAnimeData.members }} people watching (#{{
-              singleAnimeData.popularity
-            }})
-          </li>
-          <li
-            v-if="singleAnimeData.status == 'Finished Airing'"
-            class="score-item"
-          >
-            Popularity: {{ singleAnimeData.members }} people watched (#{{
-              singleAnimeData.popularity
-            }})
-          </li>
-          <li
-            v-if="singleAnimeData.status == 'Not yet aired'"
-            class="score-item"
-          >
-            Popularity: {{ singleAnimeData.members }} planning to watch (#{{
-              singleAnimeData.popularity
-            }})
-          </li>
-        </ul>
+      <section class="titles-mobile mobile-section">
+        <h2 class="anime-title-mobile">{{ singleAnimeData.title }}</h2>
+        <h2
+          v-show="singleAnimeData.title_english"
+          class="anime-title-mobile"
+          id="anime-title-english-mobile"
+        >
+          ({{ singleAnimeData.title_english }})
+        </h2>
       </section>
 
       <section class="synopsis-section-mobile mobile-section">
@@ -913,40 +907,32 @@ export default {
   display: flex;
   flex-direction: column;
   //justify-content: space-between;
+  flex-grow: 1;
 }
-.top-panel-right-mobile > * {
-  text-align: left;
-}
+
 .top-panel-right-text {
   background-color: var(--surface-color);
   border-radius: 0 2rem 2rem 0;
   padding: 2.5rem;
+  min-width: 21rem;
 }
+.score-list-mobile {
+  padding-bottom: calc(2.5rem - var(--li-padding-bottom));
+}
+.score-list-mobile,
+.broadcast-list-mobile {
+  text-align: right;
+}
+
 .titles-mobile {
-  margin-bottom: 2.5rem;
+  margin-top: -2rem;
+  //background-color: var(--surface-color);
 }
 .anime-title-mobile {
   font-size: 3rem;
 }
 #anime-title-english-mobile {
   font-size: 2.5rem;
-}
-.broadcast-panel-mobile {
-  text-align: center;
-  margin: auto;
-}
-
-.score-section-mobile {
-  /* display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left; */
-
-  background-color: var(--surface-color);
-  padding: 2rem;
-  padding-bottom: calc(2rem - var(--li-padding-bottom));
-
-  margin: auto -10vw 4rem -10vw;
 }
 
 .anime-synopsis-mobile {
