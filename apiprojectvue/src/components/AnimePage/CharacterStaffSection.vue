@@ -23,7 +23,7 @@
       >
         See Less
       </p>
-      <h3>Characters and Staff:</h3>
+      <h3 id="character-staff-header">Characters and Staff</h3>
       <p
         v-if="showCharacterStaffSeeMore == true"
         v-on:click="
@@ -111,6 +111,9 @@ export default {
   }
   .character-staff-header-mobile {
     display: block;
+  }
+  #character-staff-header {
+    font-size: 2.4rem;
   }
 }
 </style>

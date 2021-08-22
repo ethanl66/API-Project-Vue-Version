@@ -779,6 +779,7 @@ export default {
   width: 100%;
   min-height: 100vh;
   margin: auto;
+  padding-bottom: 4rem;
 }
 
 .mobile-panel {
@@ -884,6 +885,10 @@ export default {
 }
 .songs-list-header {
   margin-left: -2rem;
+}
+
+.character-staff-section-mobile {
+  padding: 2rem;
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
