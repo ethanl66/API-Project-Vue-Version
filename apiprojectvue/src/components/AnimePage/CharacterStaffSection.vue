@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="character-staff-header">
+    <section class="character-staff-header-desktop">
       <p
         v-if="showCharacterStaffSeeMore == true"
         v-on:click="
@@ -47,6 +47,33 @@
         See Less
       </p>
     </section>
+
+    <section class="character-staff-header-mobile">
+      <h3>Characters and Staff:</h3>
+      <p
+        v-if="showCharacterStaffSeeMore == true"
+        v-on:click="
+          showCharacterStaffRest = true;
+          showCharacterStaffSeeMore = false;
+        "
+        class="see-more-btn"
+        id="character-staff-see-more"
+      >
+        See More
+      </p>
+      <p
+        v-if="showCharacterStaffSeeMore == false"
+        v-on:click="
+          showCharacterStaffRest = false;
+          showCharacterStaffSeeMore = true;
+        "
+        class="see-more-btn"
+        id="character-staff-see-less"
+      >
+        See Less
+      </p>
+    </section>
+
     <section class="character-staff-panel">
       <character-card :characterStaff="characterStaff" />
       <div v-if="showCharacterStaffRest" class="character-staff-panel">
@@ -73,4 +100,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.character-staff-header-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .character-staff-header-desktop {
+    display: none;
+  }
+  .character-staff-header-mobile {
+    display: block;
+  }
+}
+</style>

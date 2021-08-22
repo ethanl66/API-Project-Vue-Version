@@ -65,11 +65,11 @@
         <div class="left-section">
           <section class="score-panel panel">
             <ul class="score-list">
-              <li v-if="singleAnimeData.rank" class="score-item">
-                Rank: #{{ singleAnimeData.rank }}
-              </li>
               <li v-if="singleAnimeData.score" class="score-item">
                 Rating: {{ singleAnimeData.score }}/10
+              </li>
+              <li v-if="singleAnimeData.rank" class="score-item">
+                Rank: #{{ singleAnimeData.rank }}
               </li>
               <li v-if="singleAnimeData.airing" class="score-item">
                 Popularity: {{ singleAnimeData.members }} people watching (#{{
@@ -235,21 +235,241 @@
     <!-- --------------------------------------------------------------------- -->
     <!-- --------------------------------------------------------------------- -->
 
-    <div class="anime-page-container-mobile"></div>
+    <div class="anime-page-container-mobile">
+      <section class="top-panel-mobile">
+        <div class="top-panel-main-title-mobile">
+          <h2 class="anime-title-mobile">{{ singleAnimeData.title }}</h2>
+          <h2
+            v-show="singleAnimeData.title_english"
+            class="anime-title-mobile"
+            id="anime-title-english-mobile"
+          >
+            ({{ singleAnimeData.title_english }})
+          </h2>
+        </div>
+
+        <div class="top-panel-main-mobile">
+          <img
+            :src="singleAnimeData.image_url"
+            alt=""
+            class="anime-img-mobile"
+          />
+          <div class="top-panel-info-mobile">
+            <ul class="score-list-mobile top-panel-list-mobile">
+              <li v-if="singleAnimeData.score" class="score-item">
+                Rating: {{ singleAnimeData.score }}/10
+              </li>
+              <li v-if="singleAnimeData.rank" class="score-item">
+                Rank: #{{ singleAnimeData.rank }}
+              </li>
+              <li v-if="singleAnimeData.airing" class="score-item">
+                {{ singleAnimeData.members }} people watching (#{{
+                  singleAnimeData.popularity
+                }})
+              </li>
+              <li
+                v-if="singleAnimeData.status == 'Finished Airing'"
+                class="score-item"
+              >
+                {{ singleAnimeData.members }} people watched (#{{
+                  singleAnimeData.popularity
+                }})
+              </li>
+              <li
+                v-if="singleAnimeData.status == 'Not yet aired'"
+                class="score-item"
+              >
+                {{ singleAnimeData.members }} planning to watch (#{{
+                  singleAnimeData.popularity
+                }})
+              </li>
+            </ul>
+
+            <ul class="top-panel-info-misc-list-mobile top-panel-list-mobile">
+              <li
+                v-if="singleAnimeData.studios.length == 1"
+                class="studios-item"
+              >
+                Studio:
+                <span
+                  v-for="(studio, index) in singleAnimeData.studios"
+                  :key="index"
+                >
+                  {{ studio.name
+                  }}<span v-if="index != singleAnimeData.studios.length - 1"
+                    >,</span
+                  >
+                </span>
+              </li>
+              <li
+                v-if="singleAnimeData.studios.length > 1"
+                class="studios-item"
+              >
+                Studios:
+                <span
+                  v-for="(studio, index) in singleAnimeData.studios"
+                  :key="index"
+                >
+                  {{ studio.name
+                  }}<span v-if="index != singleAnimeData.studios.length - 1"
+                    >,</span
+                  >
+                </span>
+              </li>
+              <li class="broadcast-item">
+                {{ singleAnimeData.episodes }} episodes
+              </li>
+            </ul>
+
+            <ul class="link-to-mal-mobile top-panel-list-mobile">
+              <a
+                class="link-to-mal-mobile"
+                :href="singleAnimeData.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Link to MAL</a
+              >
+            </ul>
+            <button
+              @click="showAnimeStatsModal = true"
+              class="top-panel-info-more-mobile"
+            >
+              See More
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <anime-stats-modal
+        v-if="showAnimeStatsModal"
+        @closeModal="showAnimeStatsModal = false"
+        :singleAnimeData="singleAnimeData"
+      >
+        <!-- you can use custom content here to overwrite default content 
+        <h3 slot="header">custom header</h3> -->
+      </anime-stats-modal>
+
+      <section class="broadcast-section-mobile mobile-panel">
+        <ul class="broadcast-list-mobile">
+          <li v-if="singleAnimeData.airing" class="broadcast-item">
+            Currently airing on {{ singleAnimeData.broadcast }}
+          </li>
+          <li
+            v-else-if="singleAnimeData.aired.string == 'Not available'"
+            class="broadcast-item"
+          >
+            Air date: Unknown
+          </li>
+          <li
+            v-else-if="!singleAnimeData.airing && singleAnimeData.premiered"
+            class="broadcast-item"
+          >
+            Air date: {{ singleAnimeData.premiered }}
+          </li>
+          <li v-else-if="singleAnimeData.aired.string" class="broadcast-item">
+            Air Date: {{ singleAnimeData.aired.string }}
+          </li>
+
+          <li v-if="singleAnimeData.duration" class="broadcast-item">
+            Episode duration: {{ singleAnimeData.duration }}
+          </li>
+
+          <li class="broadcast-item">
+            {{ singleAnimeData.episodes }} episodes
+          </li>
+        </ul>
+      </section>
+
+      <!-- <section class="anime-nav">
+        <ul class="anime-navbar-list">
+          <li class="anime-navbar-list-item"><a href="#">Overview</a></li>
+          <li class="anime-navbar-list-item"><a href="#">Music</a></li>
+          <li class="anime-navbar-list-item"><a href="#">Characters</a></li> -->
+      <!-- <div class="anime-nav-fade"></div> -->
+      <!-- </ul>
+      </section> -->
+
+      <section class="synopsis-section-mobile">
+        <h3 class="synopsis-header-mobile section-header-mobile">Synopsis</h3>
+        <p class="anime-synopsis-mobile">
+          {{ singleAnimeData.synopsis }}
+        </p>
+      </section>
+
+      <section class="music-section-mobile mobile-panel">
+        <h3 class="music-header-mobile section-header-mobile">
+          Opening and Ending Songs
+        </h3>
+        <ul class="songs-list-mobile">
+          <li
+            v-if="singleAnimeData.opening_themes.length == 1"
+            class="songs-list-item songs-list-header"
+          >
+            Opening Theme:
+          </li>
+          <li
+            v-if="singleAnimeData.opening_themes.length > 1"
+            class="songs-list-item songs-list-header"
+          >
+            Opening Themes:
+          </li>
+          <li
+            class="songs-list-item"
+            v-for="opening in singleAnimeData.opening_themes"
+            :key="opening"
+          >
+            {{ opening }}
+          </li>
+          <br />
+
+          <li
+            v-if="singleAnimeData.ending_themes.length == 1"
+            class="songs-list-item songs-list-header"
+          >
+            Ending Theme:
+          </li>
+          <li
+            v-if="singleAnimeData.ending_themes.length > 1"
+            class="songs-list-item songs-list-header"
+          >
+            Ending Themes:
+          </li>
+          <li
+            class="songs-list-item"
+            v-for="ending in singleAnimeData.ending_themes"
+            :key="ending"
+          >
+            {{ ending }}
+          </li>
+        </ul>
+      </section>
+
+      <section class="character-staff-section-mobile">
+        <character-staff-section
+          :characterStaff="characterStaff"
+          :characterStaffRest="characterStaffRest"
+        />
+      </section>
+
+      <!-- 101010101010101010101010101010101010101010101010101010101010101010101010 -->
+      <!-- 101010101010101010101010101010101010101010101010101010101010101010101010 -->
+    </div>
   </div>
 </template>
 
 <script>
 import CharacterStaffSection from "../components/AnimePage/CharacterStaffSection.vue";
+import AnimeStatsModal from "../components/AnimePage/AnimeStatsModal.vue";
 
 export default {
-  components: { CharacterStaffSection },
+  components: { CharacterStaffSection, AnimeStatsModal },
   data() {
     return {
       singleAnimeData: {},
       characterStaff: {},
       characterStaffRest: {},
       recommendations: [],
+      showAnimeStatsModal: false,
     };
   },
   computed: {
@@ -551,67 +771,119 @@ export default {
 }
 
 /* ///////////////////////////////////////////////////////////// */
-.mobile-panel {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-
-  background-color: var(--surface-color);
-  padding: 2rem;
-  padding-bottom: calc(2rem - var(--li-padding-bottom));
-  border-radius: 1rem;
-  margin: 0 0 3rem 0;
-}
-.mobile-section {
-  margin-bottom: 4rem;
-}
-
+/* ///////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////////////////////// */
 .anime-page-container-mobile {
-  width: 80vw;
+  width: 100%;
   min-height: 100vh;
   margin: auto;
-  padding: 4rem 0;
 }
-.top-panel-mobile {
-  display: flex;
-  //border: 1px solid white;
-  //margin-bottom: 10rem;
-}
-.top-panel-right-mobile {
-  display: flex;
+
+.mobile-panel {
+  /*   display: flex;
   flex-direction: column;
-  //justify-content: space-between;
-  flex-grow: 1;
+  align-items: flex-start;
+  text-align: left; */
+
+  //background-color: var(--surface-color);
+  padding: 2rem;
+  padding-bottom: calc(2rem - var(--li-padding-bottom));
 }
 
-.top-panel-right-text {
-  background-color: var(--surface-color);
-  border-radius: 0 2rem 2rem 0;
-  padding: 2.5rem;
-  min-width: 21rem;
-}
-.score-list-mobile {
-  padding-bottom: calc(2.5rem - var(--li-padding-bottom));
-}
-.score-list-mobile,
-.broadcast-list-mobile {
-  text-align: right;
-}
-
-.titles-mobile {
-  margin-top: -2rem;
+.top-panel-main-title-mobile {
+  padding: 2rem;
   //background-color: var(--surface-color);
 }
 .anime-title-mobile {
-  font-size: 3rem;
-}
-#anime-title-english-mobile {
   font-size: 2.5rem;
 }
+#anime-title-english-mobile {
+  font-size: 2rem;
+}
+.top-panel-main-mobile {
+  display: flex;
+  //background-color: var(--surface-color);
+}
+.anime-img-mobile {
+  width: 42%;
+}
+.top-panel-info-mobile {
+  padding: 2rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.top-panel-list-mobile > li,
+.top-panel-list-mobile > li > span {
+  font-size: calc(var(--mobile-small-font-size) + 0.05rem);
+}
+/* .score-list-mobile {
+  margin-bottom: 2.5rem;
+} */
+.link-to-mal-mobile {
+  color: var(--primary-color);
+  font-size: calc(var(--mobile-small-font-size) + 0.05rem);
+}
+.top-panel-info-more-mobile {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 1rem;
+  font-size: calc(var(--mobile-small-font-size) + 0.1rem);
+}
 
+.broadcast-section-mobile {
+  background-color: var(--surface-color);
+}
+.broadcast-list-mobile > li {
+  font-size: var(--mobile-small-font-size);
+}
+
+.anime-navbar-list {
+  display: flex;
+  justify-content: space-around;
+  padding: 1.4rem 1rem;
+  overflow-x: scroll;
+  position: relative;
+  //scrollbar-color: var(--primary-color) var(--surface-color);
+  background-color: var(--surface-color-2);
+}
+.anime-navbar-list > li > a {
+  color: var(--primary-color);
+  font-size: var(--mobile-small-font-size);
+  padding: 0 1rem;
+}
+/* .anime-nav-fade {
+  background-image: linear-gradient(to right, var(--black), #ffffff00);
+  position: absolute;
+  height: 100%;
+  width: 5rem;
+  top: 0;
+  right: 0;
+} */
+
+.synopsis-section-mobile {
+  padding: 2.5rem 3rem 3rem 3rem;
+}
+.section-header-mobile {
+  font-size: 2.4rem;
+}
 .anime-synopsis-mobile {
-  padding: 1.5rem;
+  text-align: left;
+  max-height: 30rem;
+  overflow-y: scroll;
+}
+
+.songs-list-mobile {
+  text-align: left;
+  padding-left: 2rem;
+}
+.songs-list-header {
+  margin-left: -2rem;
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
@@ -640,6 +912,11 @@ export default {
   }
   .anime-page-container-mobile {
     display: block;
+  }
+  p,
+  li,
+  span {
+    font-size: var(--mobile-small-font-size);
   }
 }
 

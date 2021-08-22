@@ -4,6 +4,7 @@
   /* Colors */
   --black: #191919;
   --light-black: #202020;
+  --light-black-2: #242424;
   --sky-blue: #7fc3ff;
   --dark-gray: #383838;
   --gray: #839da6;
@@ -17,6 +18,7 @@
   --on-background: ;
   --surface-color: var(--light-black);
   --on-surface: ;
+  --surface-color-2: var(--light-black-2);
   --primary-color: var(--sky-blue);
   --on-primary: ;
   --secondary-color: var(--dark-orange);
@@ -37,6 +39,7 @@
   --li-padding-bottom: 0.5rem;
 
   --font: "Manrope", sans-serif;
+  --mobile-small-font-size: 1.6rem;
 }
 
 html,
@@ -49,6 +52,23 @@ body,
 }
 ul {
   list-style-type: none;
+  font-size: var(--mobile-small-font-size);
+}
+a {
+  text-decoration: none;
+  font-size: var(--mobile-small-font-size);
+}
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+
+  font-size: var(--mobile-small-font-size);
+  color: var(--primary-color);
 }
 
 h1,
@@ -68,7 +88,7 @@ h2 {
 }
 h3 {
   font-size: 2.6rem;
-  margin: 0.8rem auto;
+  margin: 0 0 1rem 0;
 }
 li,
 p,
