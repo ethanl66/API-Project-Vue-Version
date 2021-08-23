@@ -460,9 +460,10 @@
 <script>
 import CharacterStaffSection from "../components/AnimePage/CharacterStaffSection.vue";
 import AnimeStatsModal from "../components/AnimePage/AnimeStatsModal.vue";
+import recommendationCards from "../components/RecommendationCards.vue";
 
 export default {
-  components: { CharacterStaffSection, AnimeStatsModal },
+  components: { CharacterStaffSection, AnimeStatsModal, recommendationCards },
   data() {
     return {
       singleAnimeData: {},
@@ -480,6 +481,7 @@ export default {
   created: function () {
     this.fetchData();
   },
+
   methods: {
     fetchData: async function () {
       try {
