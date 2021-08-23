@@ -3,7 +3,7 @@
     <div class="anime-page-container-desktop">
       <!--     <router-link :to="home">
       <p class="back-to-home">Back to Main Page</p>
-    </router-link> -->
+      </router-link> -->
 
       <section class="top-panel">
         <div class="top-panel-left">
@@ -226,6 +226,61 @@
             :characterStaff="characterStaff"
             :characterStaffRest="characterStaffRest"
           />
+
+          <section class="recommendations-panel">
+            <section class="character-staff-header-desktop">
+              <p
+                v-if="showRecSeeMore == true"
+                v-on:click="
+                  showRecRest = true;
+                  showRecSeeMore = false;
+                "
+                class="see-more-btn visibility-hidden"
+                id="character-staff-see-more"
+              >
+                See More
+              </p>
+              <p
+                v-if="showRecSeeMore == false"
+                v-on:click="
+                  showRecRest = false;
+                  showRecSeeMore = true;
+                "
+                class="see-more-btn visibility-hidden"
+                id="character-staff-see-less"
+              >
+                See Less
+              </p>
+              <h3 id="character-staff-header">Recommendations</h3>
+              <p
+                v-if="showRecSeeMore == true"
+                v-on:click="
+                  showRecRest = true;
+                  showRecSeeMore = false;
+                "
+                class="see-more-btn"
+                id="character-staff-see-more"
+              >
+                See More
+              </p>
+              <p
+                v-if="showRecSeeMore == false"
+                v-on:click="
+                  showRecRest = false;
+                  showRecSeeMore = true;
+                "
+                class="see-more-btn"
+                id="character-staff-see-less"
+              >
+                See Less
+              </p>
+            </section>
+
+            <recommendation-cards
+              :recommendations="recommendations"
+              :recommendationsRest="recommendationsRest"
+            ></recommendation-cards>
+          </section>
         </div>
       </section>
     </div>
@@ -470,7 +525,10 @@ export default {
       characterStaff: {},
       characterStaffRest: {},
       recommendations: [],
+      recommendationsRest: [],
       showAnimeStatsModal: false,
+      showRecSeeMore: true,
+      showRecRest: false,
     };
   },
   computed: {
@@ -481,7 +539,12 @@ export default {
   created: function () {
     this.fetchData();
   },
-
+  watch: {
+    $route() {
+      /* this.fetchData(); */
+      location.reload();
+    },
+  },
   methods: {
     fetchData: async function () {
       try {
@@ -566,7 +629,8 @@ export default {
         );
         //console.log(`https://api.jikan.moe/v3/anime/${this.$route.params.id}`);
         const dataThree = await responseThree.json();
-        this.recommendations = dataThree.recommendations.slice(0, 30);
+        this.recommendations = dataThree.recommendations.slice(0, 10);
+        this.recommendationsRest = dataThree.recommendations.slice(0, 15);
         //console.log(dataThree);
 
         /* let studios = "";
@@ -733,7 +797,7 @@ export default {
   text-decoration: none;
 }
 
-.character-staff-header {
+.character-staff-header-desktop {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -747,20 +811,21 @@ export default {
 }
 
 .recommendations-panel {
-  width: calc(
+  /* width: calc(
     var(--container-width) - var(--left-section-width) -
       var(--right-section-padding-left)
-  );
+  ); */
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 
-  background-color: var(--surface-color);
-  padding: 3rem;
+  //background-color: var(--surface-color);
+
+  margin-top: 4rem;
   border-radius: 1rem;
 }
 .recommendations-header {
-  text-align: left;
+  text-align: center;
   margin: 0 0 2rem 0;
   line-height: 1;
 }
@@ -770,6 +835,10 @@ export default {
 }
 .visibility-hidden {
   visibility: hidden;
+}
+
+.songs-list {
+  padding-left: 2rem;
 }
 
 /* ///////////////////////////////////////////////////////////// */
@@ -905,7 +974,7 @@ export default {
   .visibility-hidden {
     display: none;
   }
-  .character-staff-header {
+  .character-staff-header-desktop {
     padding-right: 0;
   }
   :root {
@@ -915,6 +984,9 @@ export default {
 
 @media screen and (max-width: 767px) {
   .anime-page-container-desktop {
+    display: none;
+  }
+  .character-staff-header-desktop {
     display: none;
   }
   .anime-page-container-mobile {

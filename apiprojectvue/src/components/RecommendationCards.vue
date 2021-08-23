@@ -5,17 +5,20 @@
     <!--       <ul v-for="result in recommendations" :key="result">
         <p>{{ result.title }}</p>
       </ul> -->
+
     <router-link :to="animePath" class="router-link">
       <div
         v-for="recommendation in recommendations"
         :key="recommendation"
-        class="card"
+        class="rec-card"
         v-on:click="clickedId = recommendation.mal_id"
       >
         <img class="card-img" :src="recommendation.image_url" alt="" />
         <ul class="card-textarea">
           <li id="card-title">{{ recommendation.title }}</li>
-          <li>{{ recommendation.recommendation_count }} people recommend</li>
+          <li class="card-data">
+            {{ recommendation.recommendation_count }} people recommend
+          </li>
         </ul>
       </div>
     </router-link>
@@ -25,7 +28,7 @@
 <script>
 export default {
   name: "recommendationCards",
-  props: ["recommendations"],
+  props: { recommendations: Array, recommendationsRest: Array },
   data() {
     return {
       clickedId: "",
@@ -48,5 +51,32 @@ export default {
 
 #recommendations-card-holder {
   width: 100%;
+  background-color: var(--surface-color);
+  padding: 2rem;
+  position: relative;
+}
+
+.rec-card {
+  display: inline-block;
+  width: 20%;
+  border: 4px solid var(--surface-color);
+  padding: 4px;
+  position: relative;
+  border-radius: 1rem;
+}
+.rec-card:hover {
+  background-color: var(--card-hover);
+  border: 4px solid var(--card-hover-border);
+}
+
+@media screen and (max-width: 1650px) {
+  .rec-card {
+    width: 25%;
+  }
+}
+@media screen and (max-width: 940px) {
+  .rec-card {
+    width: 33.33%;
+  }
 }
 </style>

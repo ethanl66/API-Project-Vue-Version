@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="character-staff-div-main">
     <section class="character-staff-header-desktop">
       <p
         v-if="showCharacterStaffSeeMore == true"
@@ -101,6 +101,10 @@ export default {
 </script>
 
 <style lang="scss">
+.character-staff-div-main {
+  margin-top: 4rem;
+}
+
 .character-staff-header-mobile {
   display: none;
 }
