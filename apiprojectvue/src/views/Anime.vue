@@ -507,6 +507,40 @@
         />
       </section>
 
+      <section class="recommendations-panel">
+        <section class="character-staff-header-mobile">
+          <h3>Recommendations</h3>
+          <p
+            v-if="showCharacterStaffSeeMore == true"
+            v-on:click="
+              showCharacterStaffRest = true;
+              showCharacterStaffSeeMore = false;
+            "
+            class="see-more-btn"
+            id="character-staff-see-more"
+          >
+            See More
+          </p>
+          <p
+            v-if="showCharacterStaffSeeMore == false"
+            v-on:click="
+              showCharacterStaffRest = false;
+              showCharacterStaffSeeMore = true;
+            "
+            class="see-more-btn"
+            id="character-staff-see-less"
+          >
+            See Less
+          </p>
+        </section>
+
+        <recommendation-cards
+          :recommendations="recommendations"
+          :recommendationsRest="recommendationsRest"
+          :showRecRest="showRecRest"
+        ></recommendation-cards>
+      </section>
+
       <!-- 101010101010101010101010101010101010101010101010101010101010101010101010 -->
       <!-- 101010101010101010101010101010101010101010101010101010101010101010101010 -->
     </div>

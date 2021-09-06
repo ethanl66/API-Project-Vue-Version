@@ -16,8 +16,17 @@
         <img class="card-img" :src="recommendation.image_url" alt="" />
         <ul class="card-textarea">
           <li id="card-title">{{ recommendation.title }}</li>
-          <li class="card-data">
+          <li
+            class="card-data"
+            v-if="recommendation.recommendation_count > '1'"
+          >
             {{ recommendation.recommendation_count }} people recommend
+          </li>
+          <li
+            class="card-data"
+            v-if="recommendation.recommendation_count == '1'"
+          >
+            {{ recommendation.recommendation_count }} person recommends
           </li>
         </ul>
       </div>
@@ -32,8 +41,17 @@
           <img class="card-img" :src="recommendation.image_url" alt="" />
           <ul class="card-textarea">
             <li id="card-title">{{ recommendation.title }}</li>
-            <li class="card-data">
+            <li
+              class="card-data"
+              v-if="recommendation.recommendation_count > '1'"
+            >
               {{ recommendation.recommendation_count }} people recommend
+            </li>
+            <li
+              class="card-data"
+              v-if="recommendation.recommendation_count == '1'"
+            >
+              {{ recommendation.recommendation_count }} person recommends
             </li>
           </ul>
         </div>
@@ -98,6 +116,17 @@ export default {
 @media screen and (max-width: 940px) {
   .rec-card {
     width: 33.33%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .rec-card {
+    border: none;
+  }
+  #recommendations-card-holder {
+    padding: 1rem;
+  }
+  .router-link {
+    width: 100%;
   }
 }
 </style>

@@ -49,7 +49,7 @@
     </section>
 
     <section class="character-staff-header-mobile">
-      <h3>Characters and Staff:</h3>
+      <h3>Characters and Staff</h3>
       <p
         v-if="showCharacterStaffSeeMore == true"
         v-on:click="
