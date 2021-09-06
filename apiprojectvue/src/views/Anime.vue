@@ -156,6 +156,47 @@
             </ul>
           </section>
 
+          <section class="related-panel panel">
+            <ul class="related-list">
+              <li related-item v-if="singleAnimeData.related.Adaptation[0]">
+                Adaptation of
+                <a
+                  class="related-link"
+                  :href="singleAnimeData.related.Adaptation[0].url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {{ singleAnimeData.related.Adaptation[0].name }}
+                  <!-- ({{
+                    singleAnimeData.related.Adaptation[0].type
+                  }}) --></a
+                >
+              </li>
+              <li related-item v-if="singleAnimeData.related.Prequel">
+                Prequel:
+                <a
+                  class="related-link"
+                  :href="singleAnimeData.related.Prequel[0].url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {{ singleAnimeData.related.Prequel[0].name }}
+                </a>
+              </li>
+              <li related-item v-if="singleAnimeData.related.Sequel">
+                Sequel:
+                <a
+                  class="related-link"
+                  :href="singleAnimeData.related.Sequel[0].url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {{ singleAnimeData.related.Sequel[0].name }}
+                </a>
+              </li>
+            </ul>
+          </section>
+
           <section class="links-section">
             <a
               class="link-to-mal"
@@ -874,6 +915,13 @@ export default {
 
 .songs-list {
   padding-left: 2rem;
+}
+
+.related-link {
+  color: var(--primary-color);
+}
+.related-link:hover {
+  text-decoration: underline;
 }
 
 /* ///////////////////////////////////////////////////////////// */
