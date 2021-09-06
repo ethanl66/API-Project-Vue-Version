@@ -1,5 +1,9 @@
 <template>
   <div>
+    <warning-bar
+      msg="Due to an ongoing DDOS attack, loading speeds may be slow. We apologize for
+    any inconvienience."
+    ></warning-bar>
     <div class="anime-page-container-desktop">
       <!--     <router-link :to="home">
       <p class="back-to-home">Back to Main Page</p>
@@ -593,10 +597,10 @@
         <section class="character-staff-header-mobile">
           <h3>Recommendations</h3>
           <p
-            v-if="showCharacterStaffSeeMore == true"
+            v-if="showRecSeeMore == true"
             v-on:click="
-              showCharacterStaffRest = true;
-              showCharacterStaffSeeMore = false;
+              showRecRest = true;
+              showRecSeeMore = false;
             "
             class="see-more-btn"
             id="character-staff-see-more"
@@ -604,10 +608,10 @@
             See More
           </p>
           <p
-            v-if="showCharacterStaffSeeMore == false"
+            v-if="showRecSeeMore == false"
             v-on:click="
-              showCharacterStaffRest = false;
-              showCharacterStaffSeeMore = true;
+              showRecRest = false;
+              showRecSeeMore = true;
             "
             class="see-more-btn"
             id="character-staff-see-less"
@@ -633,9 +637,15 @@
 import CharacterStaffSection from "../components/AnimePage/CharacterStaffSection.vue";
 import AnimeStatsModal from "../components/AnimePage/AnimeStatsModal.vue";
 import recommendationCards from "../components/RecommendationCards.vue";
+import WarningBar from "@/components/WarningBar.vue";
 
 export default {
-  components: { CharacterStaffSection, AnimeStatsModal, recommendationCards },
+  components: {
+    CharacterStaffSection,
+    AnimeStatsModal,
+    recommendationCards,
+    WarningBar,
+  },
   data() {
     return {
       singleAnimeData: {},
@@ -747,7 +757,7 @@ export default {
         //console.log(`https://api.jikan.moe/v3/anime/${this.$route.params.id}`);
         const dataThree = await responseThree.json();
         this.recommendations = dataThree.recommendations.slice(0, 10);
-        this.recommendationsRest = dataThree.recommendations.slice(0, 15);
+        this.recommendationsRest = dataThree.recommendations.slice(10, 15);
         //console.log(dataThree);
 
         /* let studios = "";
@@ -1126,7 +1136,7 @@ export default {
     font-size: var(--mobile-small-font-size);
   }
   .character-staff-div-main {
-    margin-top: 0;
+    margin-top: 1rem;
   }
 }
 

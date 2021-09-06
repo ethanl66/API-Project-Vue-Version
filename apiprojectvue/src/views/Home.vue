@@ -1,5 +1,9 @@
 <template>
   <div class="home">
+    <warning-bar
+      msg="Due to an ongoing DDOS attack, loading speeds may be slow. We apologize for
+    any inconvienience."
+    ></warning-bar>
     <h1 id="find-anime">Find Anime</h1>
     <seasonals></seasonals>
     <search></search>
@@ -12,6 +16,7 @@
 import Seasonals from "@/components/Seasonals.vue";
 import Upcoming from "@/components/Upcoming.vue";
 import Search from "@/components/Search.vue";
+import WarningBar from "@/components/WarningBar.vue";
 
 export default {
   name: "Home",
@@ -19,6 +24,7 @@ export default {
     Seasonals,
     Upcoming,
     Search,
+    WarningBar,
   },
 };
 </script>

@@ -31,30 +31,29 @@
         </ul>
       </div>
 
-      <div v-if="showRecRest">
-        <div
-          v-for="recommendation in recommendationsRest"
-          :key="recommendation"
-          class="rec-card"
-          v-on:click="clickedId = recommendation.mal_id"
-        >
-          <img class="card-img" :src="recommendation.image_url" alt="" />
-          <ul class="card-textarea">
-            <li id="card-title">{{ recommendation.title }}</li>
-            <li
-              class="card-data"
-              v-if="recommendation.recommendation_count > '1'"
-            >
-              {{ recommendation.recommendation_count }} people recommend
-            </li>
-            <li
-              class="card-data"
-              v-if="recommendation.recommendation_count == '1'"
-            >
-              {{ recommendation.recommendation_count }} person recommends
-            </li>
-          </ul>
-        </div>
+      <div
+        v-for="recommendation in recommendationsRest"
+        :key="recommendation"
+        class="rec-card"
+        v-bind:class="{ 'rec-card-visibility': !showRecRest }"
+        v-on:click="clickedId = recommendation.mal_id"
+      >
+        <img class="card-img" :src="recommendation.image_url" alt="" />
+        <ul class="card-textarea">
+          <li id="card-title">{{ recommendation.title }}</li>
+          <li
+            class="card-data"
+            v-if="recommendation.recommendation_count > '1'"
+          >
+            {{ recommendation.recommendation_count }} people recommend
+          </li>
+          <li
+            class="card-data"
+            v-if="recommendation.recommendation_count == '1'"
+          >
+            {{ recommendation.recommendation_count }} person recommends
+          </li>
+        </ul>
       </div>
     </router-link>
   </section>
@@ -87,6 +86,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 @import url("../assets/main.scss");
+
+.rec-card-visibility {
+  display: none !important;
+}
 
 #recommendations-card-holder {
   width: 100%;
