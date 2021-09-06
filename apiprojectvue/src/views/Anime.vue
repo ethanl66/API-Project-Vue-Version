@@ -541,6 +541,47 @@
         </ul>
       </section>
 
+      <section class="related-section-mobile mobile-panel">
+        <ul class="related-list">
+          <li related-item v-if="singleAnimeData.related.Adaptation[0]">
+            Adaptation of
+            <a
+              class="related-link"
+              :href="singleAnimeData.related.Adaptation[0].url"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ singleAnimeData.related.Adaptation[0].name }}
+              <!-- ({{
+                    singleAnimeData.related.Adaptation[0].type
+                  }}) --></a
+            >
+          </li>
+          <li related-item v-if="singleAnimeData.related.Prequel">
+            Prequel:
+            <a
+              class="related-link"
+              :href="singleAnimeData.related.Prequel[0].url"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ singleAnimeData.related.Prequel[0].name }}
+            </a>
+          </li>
+          <li related-item v-if="singleAnimeData.related.Sequel">
+            Sequel:
+            <a
+              class="related-link"
+              :href="singleAnimeData.related.Sequel[0].url"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ singleAnimeData.related.Sequel[0].name }}
+            </a>
+          </li>
+        </ul>
+      </section>
+
       <section class="character-staff-section-mobile">
         <character-staff-section
           :characterStaff="characterStaff"
@@ -1041,6 +1082,10 @@ export default {
   margin-left: -2rem;
 }
 
+.related-section-mobile {
+  background-color: var(--surface-color);
+}
+
 .character-staff-section-mobile {
   padding: 2rem;
 }
@@ -1079,6 +1124,9 @@ export default {
   li,
   span {
     font-size: var(--mobile-small-font-size);
+  }
+  .character-staff-div-main {
+    margin-top: 0;
   }
 }
 
