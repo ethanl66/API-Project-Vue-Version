@@ -279,6 +279,7 @@
             <recommendation-cards
               :recommendations="recommendations"
               :recommendationsRest="recommendationsRest"
+              :showRecRest="showRecRest"
             ></recommendation-cards>
           </section>
         </div>

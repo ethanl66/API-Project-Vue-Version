@@ -21,6 +21,23 @@
           </li>
         </ul>
       </div>
+
+      <div v-if="showRecRest">
+        <div
+          v-for="recommendation in recommendationsRest"
+          :key="recommendation"
+          class="rec-card"
+          v-on:click="clickedId = recommendation.mal_id"
+        >
+          <img class="card-img" :src="recommendation.image_url" alt="" />
+          <ul class="card-textarea">
+            <li id="card-title">{{ recommendation.title }}</li>
+            <li class="card-data">
+              {{ recommendation.recommendation_count }} people recommend
+            </li>
+          </ul>
+        </div>
+      </div>
     </router-link>
   </section>
 </template>
@@ -28,7 +45,11 @@
 <script>
 export default {
   name: "recommendationCards",
-  props: { recommendations: Array, recommendationsRest: Array },
+  props: {
+    recommendations: Array,
+    recommendationsRest: Array,
+    showRecRest: Boolean,
+  },
   data() {
     return {
       clickedId: "",

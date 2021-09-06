@@ -89,7 +89,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin: 0 0 2rem;
+  margin: 0 0 2rem 0.5rem;
 }
 .see-more-btn {
   font-size: 1.8rem;
