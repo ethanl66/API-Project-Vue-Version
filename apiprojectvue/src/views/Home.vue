@@ -26,6 +26,9 @@ export default {
     Search,
     WarningBar,
   },
+  created: function () {
+    document.title = "Find Anime";
+  },
 };
 </script>
 

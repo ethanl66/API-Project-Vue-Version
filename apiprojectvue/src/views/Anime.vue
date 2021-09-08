@@ -665,11 +665,13 @@ export default {
   },
   created: function () {
     this.fetchData();
+    this.updateTitle();
   },
   watch: {
     $route() {
       /* this.fetchData(); */
       location.reload();
+      this.updateTitle();
     },
   },
   methods: {
@@ -787,6 +789,8 @@ export default {
         } else {
           episodes = data.episodes;
         } */
+
+        document.title = this.singleAnimeData.title + " - Find Anime";
       } catch (error) {
         console.log(error);
         alert("Error");
