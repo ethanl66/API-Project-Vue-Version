@@ -22,10 +22,10 @@
 <script>
 export default {
   name: "SeasonalsCardsAll",
-  props: {},
+  props: { seasonalsData: Array },
   data() {
     return {
-      seasonalsData: [],
+      //seasonalsData: [],
       clickedId: "",
     };
   },
@@ -35,10 +35,10 @@ export default {
     },
   },
   created: function () {
-    this.fetchSeasonalsData();
+    //this.fetchSeasonalsData();
   },
   methods: {
-    fetchSeasonalsData: async function () {
+    /*  fetchSeasonalsData: async function () {
       try {
         const response = await fetch(
           "https://api.jikan.moe/v3/search/anime?status=airing&type=tv&start_date=2021-02-01&sort=desc&order_by=members&limit=50"
@@ -52,7 +52,7 @@ export default {
         console.log(error);
         alert("Fetch failed for top seasonals.");
       }
-    },
+    }, */
     /*  onClickTemp: function () {
       this.clickedId = target.dataset.malid;
       console.log(this.clickedId);

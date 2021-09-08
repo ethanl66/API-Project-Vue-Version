@@ -11,7 +11,11 @@
       </p>
     </div>
 
-    <component v-bind:is="showComponent"></component>
+    <component
+      v-bind:is="showComponent"
+      :seasonalsData="seasonalsDataAll"
+      :seasonalsDataSliced="seasonalsDataSliced"
+    ></component>
 
     <!-- <component v-bind:is="showComponent"></component> -->
     <!--  -->
@@ -28,7 +32,9 @@ export default {
   components: { SeasonalsCardsSix, SeasonalsCardsAll },
   data() {
     return {
-      /*      seasonalsData: [], */
+      seasonalsData: [],
+      seasonalsDataSliced: [],
+      seasonalsDataAll: [],
       showComponent: SeasonalsCardsSix,
     };
   },
@@ -42,7 +48,7 @@ export default {
     }, */
   },
   created: function () {
-    /* this.fetchSeasonalsData(); */
+    this.fetchSeasonalsData();
   },
   methods: {
     changeShowComponent: function () {
@@ -54,21 +60,37 @@ export default {
         document.getElementById("seasonals-see-more").innerHTML = "See More";
       }
     },
-    /*     fetchSeasonalsData: async function () {
+    fetchSeasonalsData: async function () {
       try {
         const response = await fetch(
           "https://api.jikan.moe/v3/search/anime?status=airing&type=tv&start_date=2021-02-01&sort=desc&order_by=members"
         );
         const data = await response.json();
         this.seasonalsData = data.results;
-        console.log(data.results);
+        //console.log(data.results);
+
+        if (window.innerWidth > 1300) {
+          this.seasonalsDataSliced = data.results.slice(0, 6);
+        } else if (window.innerWidth <= 1300 && window.innerWidth > 1000) {
+          this.seasonalsDataSliced = data.results.slice(0, 5);
+        } else if (window.innerWidth <= 1000 && window.innerWidth > 750) {
+          this.seasonalsDataSliced = data.results.slice(0, 4);
+        } else if (window.innerWidth <= 750 && window.innerWidth > 500) {
+          this.seasonalsDataSliced = data.results.slice(0, 6);
+        } else if (window.innerWidth <= 525) {
+          this.seasonalsDataSliced = data.results.slice(0, 6);
+        } else {
+          this.seasonalsDataSliced = data.results.slice(0, 1);
+        }
+
+        this.seasonalsDataAll = data.results.slice(0, 48);
 
         //Ternary operator for null episodes
       } catch (error) {
         console.log(error);
         alert("Fetch failed for top seasonals.");
       }
-    }, */
+    },
   },
 };
 </script>
