@@ -11,7 +11,11 @@
       </p>
     </div>
 
-    <component v-bind:is="showComponent"></component>
+    <component
+      v-bind:is="showComponent"
+      :upcomingData="upcomingDataAll"
+      :upcomingDataSliced="upcomingDataSliced"
+    ></component>
 
     <!-- <component v-bind:is="showComponent"></component> -->
     <!--  -->
@@ -28,7 +32,9 @@ export default {
   components: { UpcomingCardsSix, UpcomingCardsAll },
   data() {
     return {
-      /*      seasonalsData: [], */
+      upcomingData: [],
+      upcomingDataSliced: [],
+      upcomingDataAll: [],
       showComponent: UpcomingCardsSix,
     };
   },
@@ -42,7 +48,7 @@ export default {
     }, */
   },
   created: function () {
-    /* this.fetchSeasonalsData(); */
+    this.fetchupcomingData();
   },
   methods: {
     changeShowComponent: function () {
@@ -54,21 +60,35 @@ export default {
         document.getElementById("upcoming-see-more").innerHTML = "See More";
       }
     },
-    /*     fetchSeasonalsData: async function () {
+    fetchupcomingData: async function () {
       try {
         const response = await fetch(
-          "https://api.jikan.moe/v3/search/anime?status=airing&type=tv&start_date=2021-02-01&sort=desc&order_by=members"
+          "https://api.jikan.moe/v3/top/anime/1/upcoming"
         );
         const data = await response.json();
-        this.seasonalsData = data.results;
-        console.log(data.results);
+        this.upcomingData = data.top;
+        //console.log(data.top);
+        if (window.innerWidth > 1300) {
+          this.upcomingDataSliced = data.top.slice(0, 6);
+        } else if (window.innerWidth <= 1300 && window.innerWidth > 1000) {
+          this.upcomingDataSliced = data.top.slice(0, 5);
+        } else if (window.innerWidth <= 1000 && window.innerWidth > 750) {
+          this.upcomingDataSliced = data.top.slice(0, 4);
+        } else if (window.innerWidth <= 750 && window.innerWidth > 500) {
+          this.upcomingDataSliced = data.top.slice(0, 6);
+        } else if (window.innerWidth <= 525) {
+          this.upcomingDataSliced = data.top.slice(0, 6);
+        } else {
+          this.upcomingDataSliced = data.top.slice(0, 1);
+        }
 
+        this.upcomingDataAll = data.top.slice(0, 48);
         //Ternary operator for null episodes
       } catch (error) {
         console.log(error);
-        alert("Fetch failed for top seasonals.");
+        alert("Fetch failed for top upcoming.");
       }
-    }, */
+    },
   },
 };
 </script>

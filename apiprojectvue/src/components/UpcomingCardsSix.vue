@@ -25,11 +25,11 @@
 <script>
 export default {
   name: "UpcomingCardsSix",
-  props: {},
+  props: { upcomingDataSliced: Array },
   data() {
     return {
-      upcomingData: [],
-      upcomingDataSliced: [],
+      //upcomingData: [],
+      //upcomingDataSliced: [],
       clickedId: "",
     };
   },
@@ -39,37 +39,9 @@ export default {
     },
   },
   created: function () {
-    this.fetchupcomingData();
+    //this.fetchupcomingData();
   },
   methods: {
-    fetchupcomingData: async function () {
-      try {
-        const response = await fetch(
-          "https://api.jikan.moe/v3/top/anime/1/upcoming"
-        );
-        const data = await response.json();
-        this.upcomingData = data.top;
-        //console.log(data.top);
-        if (window.innerWidth > 1300) {
-          this.upcomingDataSliced = data.top.slice(0, 6);
-        } else if (window.innerWidth <= 1300 && window.innerWidth > 1000) {
-          this.upcomingDataSliced = data.top.slice(0, 5);
-        } else if (window.innerWidth <= 1000 && window.innerWidth > 750) {
-          this.upcomingDataSliced = data.top.slice(0, 4);
-        } else if (window.innerWidth <= 750 && window.innerWidth > 500) {
-          this.upcomingDataSliced = data.top.slice(0, 6);
-        } else if (window.innerWidth <= 525) {
-          this.upcomingDataSliced = data.top.slice(0, 6);
-        } else {
-          this.upcomingDataSliced = data.top.slice(0, 1);
-        }
-
-        //Ternary operator for null episodes
-      } catch (error) {
-        console.log(error);
-        alert("Fetch failed for top upcoming.");
-      }
-    },
     /*  onClickTemp: function () {
       this.clickedId = target.dataset.malid;
       console.log(this.clickedId);

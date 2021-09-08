@@ -25,10 +25,10 @@
 <script>
 export default {
   name: "UpcomingCardsAll",
-  props: {},
+  props: { upcomingData: Array },
   data() {
     return {
-      upcomingData: [],
+      //upcomingData: [],
       clickedId: "",
     };
   },
@@ -38,10 +38,10 @@ export default {
     },
   },
   created: function () {
-    this.fetchupcomingData();
+    //this.fetchupcomingData();
   },
   methods: {
-    fetchupcomingData: async function () {
+    /* fetchupcomingData: async function () {
       try {
         const response = await fetch(
           "https://api.jikan.moe/v3/top/anime/1/upcoming"
@@ -55,7 +55,7 @@ export default {
         console.log(error);
         alert("Fetch failed for top upcoming.");
       }
-    },
+    }, */
     /*  onClickTemp: function () {
       this.clickedId = target.dataset.malid;
       console.log(this.clickedId);
