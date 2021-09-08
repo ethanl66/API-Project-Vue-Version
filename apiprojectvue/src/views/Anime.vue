@@ -682,8 +682,10 @@ export default {
         );
         //console.log(`https://api.jikan.moe/v3/anime/${this.$route.params.id}`);
         const data = await response.json();
+        document.title = data.title + " - Find Anime";
         this.singleAnimeData = data;
         //console.log(data);
+        //document.title = this.singleAnimeData.title + " - Find Anime";
 
         const responseTwo = await fetch(
           `https://api.jikan.moe/v3/anime/${this.$route.params.id}/characters_staff`
@@ -789,8 +791,6 @@ export default {
         } else {
           episodes = data.episodes;
         } */
-
-        document.title = this.singleAnimeData.title + " - Find Anime";
       } catch (error) {
         console.log(error);
         alert("Error");
