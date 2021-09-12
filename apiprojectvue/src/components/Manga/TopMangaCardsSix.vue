@@ -11,7 +11,9 @@
         <img class="card-img" :src="manga.image_url" alt="" />
         <ul class="card-textarea">
           <li id="card-title">{{ manga.title }}</li>
-          <li class="card-data">{{ manga.volumes }} volumes</li>
+          <li class="card-data" v-if="manga.volumes != null">
+            {{ manga.volumes }} volumes
+          </li>
           <li class="card-data">{{ manga.members }} readers</li>
         </ul>
       </div>

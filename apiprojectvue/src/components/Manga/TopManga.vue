@@ -43,10 +43,10 @@ export default {
     };
   },
   computed: {
-    seasonalPosterImg: function () {
+    /* seasonalPosterImg: function () {
       //return this.singlePokemon.sprites.front_default;
       return `https://pokeres.bastionbot.org/images/pokemon/${this.singlePokemon.id}.png`;
-    },
+    }, */
     /*  pkmnPath: function () {
       return `/pkmn/${this.singlePokemon.id}`;
     }, */
@@ -67,25 +67,31 @@ export default {
     fetchTopManga: async function () {
       try {
         const response = await fetch("https://api.jikan.moe/v3/top/manga/1");
-        const data = await response.json();
-        this.topManga = data.top;
-        //console.log(data.top);
+        const rawData = await response.json();
+        //console.log(rawData.top);
+        const data = rawData.top.filter(function (obj) {
+          return obj.type == "Manga";
+        });
+        //console.log(data);
+
+        this.topManga = data;
+        //console.log(data);
 
         if (window.innerWidth > 1300) {
-          this.topMangaSliced = data.top.slice(0, 6);
+          this.topMangaSliced = data.slice(0, 6);
         } else if (window.innerWidth <= 1300 && window.innerWidth > 1000) {
-          this.topMangaSliced = data.top.slice(0, 5);
+          this.topMangaSliced = data.slice(0, 5);
         } else if (window.innerWidth <= 1000 && window.innerWidth > 750) {
-          this.topMangaSliced = data.top.slice(0, 4);
+          this.topMangaSliced = data.slice(0, 4);
         } else if (window.innerWidth <= 750 && window.innerWidth > 500) {
-          this.topMangaSliced = data.top.slice(0, 6);
+          this.topMangaSliced = data.slice(0, 6);
         } else if (window.innerWidth <= 525) {
-          this.topMangaSliced = data.top.slice(0, 6);
+          this.topMangaSliced = data.slice(0, 6);
         } else {
-          this.topMangaSliced = data.top.slice(0, 1);
+          this.topMangaSliced = data.slice(0, 1);
         }
 
-        this.topMangaAll = data.top.slice(0, 48);
+        this.topMangaAll = data.slice(0, 48);
 
         //console.log(this.topMangaAll);
 
