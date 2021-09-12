@@ -2,7 +2,7 @@
   <section class="card-holder">
     <router-link :to="mangaPath" class="router-link">
       <div
-        v-for="manga in topMangaSliced"
+        v-for="manga in topLightSliced"
         :key="manga"
         class="card"
         v-on:click="clickedId = manga.mal_id"
@@ -24,7 +24,7 @@
 <script>
 export default {
   name: "TopLightCardsSix",
-  props: { topMangaSliced: Array },
+  props: { topLightSliced: Array },
   data() {
     return {
       //seasonalsData: [],

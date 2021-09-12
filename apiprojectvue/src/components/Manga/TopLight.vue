@@ -14,12 +14,9 @@
 
     <component
       v-bind:is="showComponent"
-      :topMangaAll="topMangaAll"
-      :topMangaSliced="topMangaSliced"
+      :topLightAll="topLightAll"
+      :topLightSliced="topLightSliced"
     ></component>
-    <!-- 
-    <top-manga-cards-six :topMangaSliced="topMangaSliced"></top-manga-cards-six>
-    <top-manga-cards-all></top-manga-cards-all> -->
   </div>
 </template>
 
@@ -28,7 +25,7 @@ import TopLightCardsAll from "./TopLightCardsAll.vue";
 import TopLightCardsSix from "./TopLightCardsSix.vue";
 
 export default {
-  name: "TopManga",
+  name: "topLight",
   props: {},
   components: {
     TopLightCardsAll,
@@ -36,9 +33,9 @@ export default {
   },
   data() {
     return {
-      topManga: [],
-      topMangaSliced: [],
-      topMangaAll: [],
+      topLight: [],
+      topLightSliced: [],
+      topLightAll: [],
       showComponent: TopLightCardsSix,
     };
   },
@@ -52,7 +49,7 @@ export default {
     }, */
   },
   created: function () {
-    this.fetchTopManga();
+    this.fetchtopLight();
   },
   methods: {
     changeShowComponent: function () {
@@ -64,7 +61,7 @@ export default {
         document.getElementById("seasonals-see-more").innerHTML = "See More";
       }
     },
-    fetchTopManga: async function () {
+    fetchtopLight: async function () {
       try {
         const response1 = await fetch("https://api.jikan.moe/v3/top/manga/1");
         const rawData1 = await response1.json();
@@ -125,26 +122,26 @@ export default {
         const data = data1.concat(data2, data3, data4, data5, data6, data7);
         console.log(data);
 
-        this.topManga = data;
+        this.topLight = data;
         //console.log(data);
 
         if (window.innerWidth > 1300) {
-          this.topMangaSliced = data.slice(0, 6);
+          this.topLightSliced = data.slice(0, 6);
         } else if (window.innerWidth <= 1300 && window.innerWidth > 1000) {
-          this.topMangaSliced = data.slice(0, 5);
+          this.topLightSliced = data.slice(0, 5);
         } else if (window.innerWidth <= 1000 && window.innerWidth > 750) {
-          this.topMangaSliced = data.slice(0, 4);
+          this.topLightSliced = data.slice(0, 4);
         } else if (window.innerWidth <= 750 && window.innerWidth > 500) {
-          this.topMangaSliced = data.slice(0, 6);
+          this.topLightSliced = data.slice(0, 6);
         } else if (window.innerWidth <= 525) {
-          this.topMangaSliced = data.slice(0, 6);
+          this.topLightSliced = data.slice(0, 6);
         } else {
-          this.topMangaSliced = data.slice(0, 1);
+          this.topLightSliced = data.slice(0, 1);
         }
 
-        this.topMangaAll = data.slice(0, 48);
+        this.topLightAll = data.slice(0, 48);
 
-        //console.log(this.topMangaAll);
+        //console.log(this.topLightAll);
 
         //Ternary operator for null episodes
       } catch (error) {
