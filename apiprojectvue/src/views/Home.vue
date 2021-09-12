@@ -1,9 +1,10 @@
 <template>
   <div class="home">
-    <warning-bar
+    <!-- <warning-bar
       msg="Due to an ongoing DDOS attack, loading speeds may be slow. We apologize for
     any inconvienience."
-    ></warning-bar>
+    ></warning-bar> -->
+    <navbar />
     <h1 id="find-anime">Find Anime</h1>
     <seasonals></seasonals>
     <search></search>
@@ -16,7 +17,8 @@
 import Seasonals from "@/components/Seasonals.vue";
 import Upcoming from "@/components/Upcoming.vue";
 import Search from "@/components/Search.vue";
-import WarningBar from "@/components/WarningBar.vue";
+//import WarningBar from "@/components/WarningBar.vue";
+import Navbar from "@/components/Navbar.vue";
 
 export default {
   name: "Home",
@@ -24,7 +26,8 @@ export default {
     Seasonals,
     Upcoming,
     Search,
-    WarningBar,
+    //WarningBar,
+    Navbar,
   },
   /*  created: function () {
     document.title = "Find Anime";
@@ -33,8 +36,12 @@ export default {
 </script>
 
 <style lang="scss">
-.home {
+#find-anime {
+  margin: 0;
+  padding: 2rem;
+}
+/* .home {
   min-height: 101vh;
   padding-top: 4rem;
-}
+} */
 </style>
