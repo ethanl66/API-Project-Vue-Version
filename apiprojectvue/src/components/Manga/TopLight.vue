@@ -1,5 +1,5 @@
 <template>
-  <div class="seasonals-section display-section">
+  <div class="seasonals-section display-section" id="top-light-section">
     <div class="section-text">
       <h2 id="seasonals-header" class="section-header">Top Light Novels</h2>
 
