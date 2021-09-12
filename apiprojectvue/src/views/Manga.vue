@@ -18,9 +18,9 @@ export default {
   components: {
     TopManga,
   },
-  created: function () {
+  /*   created: function () {
     document.title = "Find Manga";
-  },
+  }, */
 };
 </script>
 
