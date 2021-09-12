@@ -66,7 +66,9 @@ export default {
     },
     fetchTopManga: async function () {
       try {
-        const response = await fetch("https://api.jikan.moe/v3/top/manga/1");
+        const response = await fetch(
+          "https://api.jikan.moe/v3/top/manga/1/manga"
+        );
         const rawData = await response.json();
         //console.log(rawData.top);
         const data = rawData.top.filter(function (obj) {
