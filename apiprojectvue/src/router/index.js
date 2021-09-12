@@ -11,6 +11,11 @@ const routes = [
     component: Home,
   },
   {
+    path: "/manga",
+    name: "Manga",
+    component: () => import("../views/Manga.vue"),
+  },
+  {
     path: "/anime/:id",
     name: "Anime",
     // route level code-splitting
