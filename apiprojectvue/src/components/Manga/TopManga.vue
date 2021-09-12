@@ -18,6 +18,11 @@
     ></component>
 
     <top-manga-cards-all :topMangaAll="topMangaAll" />
+
+    <p>{{ topMangaAll }}</p>
+    <p>{{ topManga }}</p>
+    <p>{{ showComponent }}</p>
+    <p>{{ topMangaSliced }}</p>
   </div>
 </template>
 
@@ -51,7 +56,7 @@ export default {
     this.fetchTopManga();
   },
   methods: {
-    /* changeShowComponent: function () {
+    /*     changeShowComponent: function () {
       if (this.showComponent === SeasonalsCardsSix) {
         this.showComponent = SeasonalsCardsAll;
         document.getElementById("seasonals-see-more").innerHTML = "See Less";

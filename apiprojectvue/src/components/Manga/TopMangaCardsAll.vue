@@ -1,6 +1,7 @@
 <template>
   <section class="card-holder">
-    <router-link :to="mangaPath" class="router-link">
+    <p>{{ topMangaAll }}</p>
+    <!--     <router-link :to="mangaPath" class="router-link">
       <div
         v-for="manga in topMangaAll"
         :key="manga"
@@ -15,7 +16,7 @@
           <li class="card-data">{{ manga.members }} readers</li>
         </ul>
       </div>
-    </router-link>
+    </router-link> -->
   </section>
 </template>
 
