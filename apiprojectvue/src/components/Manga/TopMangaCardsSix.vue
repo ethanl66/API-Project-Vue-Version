@@ -1,18 +1,18 @@
 <template>
   <section class="card-holder">
-    <router-link :to="animePath" class="router-link">
+    <router-link :to="mangaPath" class="router-link">
       <div
-        v-for="seasonal in seasonalsDataSliced"
-        :key="seasonal"
-        v-on:click="clickedId = seasonal.mal_id"
+        v-for="manga in topMangaSliced"
+        :key="manga"
         class="card"
+        v-on:click="clickedId = manga.mal_id"
       >
-        <p class="card-data" id="card-rating">{{ seasonal.score }}/10</p>
-        <img class="card-img" :src="seasonal.image_url" alt="" />
+        <p class="card-data" id="card-rating">{{ manga.score }}/10</p>
+        <img class="card-img" :src="manga.image_url" alt="" />
         <ul class="card-textarea">
-          <li id="card-title">{{ seasonal.title }}</li>
-          <li class="card-data">Episodes: {{ seasonal.episodes }}</li>
-          <li class="card-data">{{ seasonal.members }} people watching</li>
+          <li id="card-title">{{ manga.title }}</li>
+          <li class="card-data">{{ manga.volumes }} volumes</li>
+          <li class="card-data">{{ manga.members }} readers</li>
         </ul>
       </div>
     </router-link>
@@ -21,8 +21,8 @@
 
 <script>
 export default {
-  name: "SeasonalsCardsSix",
-  props: { seasonalsDataSliced: Array },
+  name: "TopMangaCardsSix",
+  props: { topMangaSliced: Array },
   data() {
     return {
       //seasonalsData: [],
@@ -31,8 +31,8 @@ export default {
     };
   },
   computed: {
-    animePath: function () {
-      return `/anime/${this.clickedId}`;
+    mangaPath: function () {
+      return `/manga/${this.clickedId}`;
     },
   },
   created: function () {

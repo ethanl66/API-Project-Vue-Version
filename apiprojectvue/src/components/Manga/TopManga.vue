@@ -2,6 +2,7 @@
   <div class="seasonals-section display-section">
     <div class="section-text">
       <h2 id="seasonals-header" class="section-header">Top Manga</h2>
+
       <p
         v-on:click="changeShowComponent"
         class="see-more-btn"
@@ -16,39 +17,37 @@
       :topMangaAll="topMangaAll"
       :topMangaSliced="topMangaSliced"
     ></component>
-
-    <top-manga-cards-all :topMangaAll="topMangaAll" />
-
-    <p>{{ topMangaAll }}</p>
-    <p>{{ topManga }}</p>
-    <p>{{ showComponent }}</p>
-    <p>{{ topMangaSliced }}</p>
+    <!-- 
+    <top-manga-cards-six :topMangaSliced="topMangaSliced"></top-manga-cards-six>
+    <top-manga-cards-all></top-manga-cards-all> -->
   </div>
 </template>
 
 <script>
 import TopMangaCardsAll from "./TopMangaCardsAll.vue";
+import TopMangaCardsSix from "./TopMangaCardsSix.vue";
 
 export default {
   name: "TopManga",
   props: {},
   components: {
     TopMangaCardsAll,
+    TopMangaCardsSix,
   },
   data() {
     return {
       topManga: [],
       topMangaSliced: [],
       topMangaAll: [],
-      showComponent: TopMangaCardsAll,
+      showComponent: TopMangaCardsSix,
     };
   },
   computed: {
-    /*     seasonalPosterImg: function () {
+    seasonalPosterImg: function () {
       //return this.singlePokemon.sprites.front_default;
       return `https://pokeres.bastionbot.org/images/pokemon/${this.singlePokemon.id}.png`;
     },
-    pkmnPath: function () {
+    /*  pkmnPath: function () {
       return `/pkmn/${this.singlePokemon.id}`;
     }, */
   },
@@ -56,15 +55,15 @@ export default {
     this.fetchTopManga();
   },
   methods: {
-    /*     changeShowComponent: function () {
-      if (this.showComponent === SeasonalsCardsSix) {
-        this.showComponent = SeasonalsCardsAll;
+    changeShowComponent: function () {
+      if (this.showComponent === TopMangaCardsSix) {
+        this.showComponent = TopMangaCardsAll;
         document.getElementById("seasonals-see-more").innerHTML = "See Less";
       } else {
-        this.showComponent = SeasonalsCardsSix;
+        this.showComponent = TopMangaCardsSix;
         document.getElementById("seasonals-see-more").innerHTML = "See More";
       }
-    }, */
+    },
     fetchTopManga: async function () {
       try {
         const response = await fetch("https://api.jikan.moe/v3/top/manga/1");
