@@ -1,9 +1,9 @@
 <template>
   <nav class="navbar">
-    <a href="" class="navlink">Home</a>
-    <a href="" class="navlink">Anime</a>
-    <a href="" class="navlink">Manga</a>
-    <a href="" class="navlink">Light Novels</a>
+    <a href="/" class="navlink">Home</a>
+    <a href="/" class="navlink">Anime</a>
+    <a href="/manga" class="navlink">Manga</a>
+    <a href="/manga#top-light-section" class="navlink">Light Novels</a>
   </nav>
 </template>
 
@@ -15,7 +15,7 @@ export default {
 
 <style lang="scss">
 .navbar {
-  background-color: var(--background-color);
+  background-color: var(--nav-color);
   position: fixed;
   top: 0;
   z-index: 999;

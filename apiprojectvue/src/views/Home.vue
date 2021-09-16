@@ -40,8 +40,8 @@ export default {
   margin: 0;
   padding: 2rem;
 }
-/* .home {
+.home {
   min-height: 101vh;
-  padding-top: 4rem;
-} */
+  padding-top: 8rem;
+}
 </style>
