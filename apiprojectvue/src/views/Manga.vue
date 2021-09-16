@@ -36,6 +36,6 @@ export default {
 <style lang="scss">
 .home {
   min-height: 101vh;
-  padding-top: 8rem;
+  padding: 8rem 0 4rem 0;
 }
 </style>
