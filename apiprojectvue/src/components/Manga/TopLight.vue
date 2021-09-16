@@ -6,7 +6,7 @@
       <p
         v-on:click="changeShowComponent"
         class="see-more-btn"
-        id="seasonals-see-more"
+        id="light-see-more"
       >
         See All
       </p>
@@ -55,10 +55,10 @@ export default {
     changeShowComponent: function () {
       if (this.showComponent === TopLightCardsSix) {
         this.showComponent = TopLightCardsAll;
-        document.getElementById("seasonals-see-more").innerHTML = "See Less";
+        document.getElementById("light-see-more").innerHTML = "See Less";
       } else {
         this.showComponent = TopLightCardsSix;
-        document.getElementById("seasonals-see-more").innerHTML = "See More";
+        document.getElementById("light-see-more").innerHTML = "See More";
       }
     },
     fetchtopLight: async function () {

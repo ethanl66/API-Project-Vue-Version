@@ -6,7 +6,7 @@
       <p
         v-on:click="changeShowComponent"
         class="see-more-btn"
-        id="seasonals-see-more"
+        id="manga-see-more"
       >
         See All
       </p>
@@ -58,10 +58,10 @@ export default {
     changeShowComponent: function () {
       if (this.showComponent === TopMangaCardsSix) {
         this.showComponent = TopMangaCardsAll;
-        document.getElementById("seasonals-see-more").innerHTML = "See Less";
+        document.getElementById("manga-see-more").innerHTML = "See Less";
       } else {
         this.showComponent = TopMangaCardsSix;
-        document.getElementById("seasonals-see-more").innerHTML = "See More";
+        document.getElementById("manga-see-more").innerHTML = "See More";
       }
     },
     fetchTopManga: async function () {

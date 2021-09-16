@@ -24,6 +24,7 @@ export default {
   padding: 0.5rem 0;
   position: absolute;
   top: 0;
+  z-index: 999;
 }
 
 .x-out {
