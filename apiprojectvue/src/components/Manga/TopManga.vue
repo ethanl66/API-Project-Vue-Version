@@ -1,7 +1,7 @@
 <template>
   <div class="seasonals-section display-section">
     <div class="section-text">
-      <h2 id="seasonals-header" class="section-header">Top Manga</h2>
+      <h2 id="manga-header" class="section-header">Top Manga</h2>
 
       <p
         v-on:click="changeShowComponent"
@@ -130,5 +130,11 @@ export default {
 }
 .see-more-btn:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  #manga-header {
+    font-size: 3rem;
+  }
 }
 </style>

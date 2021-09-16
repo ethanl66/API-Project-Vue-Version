@@ -77,13 +77,13 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .search-section {
   background-color: #313e49;
   margin-bottom: 2rem;
 }
 .search-form {
-  margin: 1rem 0;
+  margin: 1rem 0 0 -2rem;
 }
 .search-area {
   height: 4rem;
@@ -134,5 +134,11 @@ export default {
 
 #search-cards-destroy {
   display: none;
+}
+
+@media screen and (max-width: 500px) {
+  .search-area {
+    width: 80vw;
+  }
 }
 </style>

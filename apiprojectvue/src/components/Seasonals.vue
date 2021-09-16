@@ -121,4 +121,10 @@ export default {
 .see-more-btn:hover {
   cursor: pointer;
 }
+
+@media screen and (max-width: 767px) {
+  #seasonals-header {
+    font-size: 3rem;
+  }
+}
 </style>

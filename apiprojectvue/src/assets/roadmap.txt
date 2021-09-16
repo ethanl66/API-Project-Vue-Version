@@ -1,0 +1,13 @@
+PROJECT ROADMAP
+
+Urgent:
+- 
+
+Priority:
+- 
+
+Future: 
+- Roadmap modal
+- Media queries for larger mobile devices
+- Back to top button
+- Consider on mobile make the a tag size fill space

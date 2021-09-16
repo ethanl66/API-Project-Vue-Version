@@ -991,7 +991,7 @@ export default {
   width: 100%;
   min-height: 100vh;
   margin: auto;
-  padding-bottom: 4rem;
+  padding: 5rem 0 4rem 0;
 }
 
 .mobile-panel {

@@ -9,6 +9,11 @@
 export default {
   name: "WarningBar",
   props: { msg: String },
+  created() {
+    setTimeout(() => {
+      this.closeWarning = "true";
+    }, 10000);
+  },
   data() {
     return {
       closeWarning: false,

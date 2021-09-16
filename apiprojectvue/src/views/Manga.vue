@@ -5,7 +5,7 @@
       msg="Due to an ongoing DDOS attack, loading speeds may be slow. We apologize for
     any inconvienience."
     ></warning-bar> -->
-    <h1 id="find-anime">Find Manga</h1>
+    <h1 id="find-manga">Find Manga</h1>
     <top-manga />
     <manga-search />
     <top-light />
@@ -37,5 +37,14 @@ export default {
 .home {
   min-height: 101vh;
   padding: 8rem 0 4rem 0;
+}
+
+@media screen and (max-width: 767px) {
+  #find-manga {
+    font-size: 4.5rem;
+  }
+  .home {
+    padding-bottom: 0;
+  }
 }
 </style>

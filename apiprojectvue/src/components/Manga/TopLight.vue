@@ -1,7 +1,7 @@
 <template>
   <div class="seasonals-section display-section" id="top-light-section">
     <div class="section-text">
-      <h2 id="seasonals-header" class="section-header">Top Light Novels</h2>
+      <h2 id="light-header" class="section-header">Top Light Novels</h2>
 
       <p
         v-on:click="changeShowComponent"
@@ -176,5 +176,11 @@ export default {
 }
 .see-more-btn:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  #light-header {
+    font-size: 3rem;
+  }
 }
 </style>

@@ -43,6 +43,15 @@ export default {
 }
 .home {
   min-height: 101vh;
-  padding-top: 8rem;
+  padding: 8rem 0 4rem 0;
+}
+
+@media screen and (max-width: 767px) {
+  #find-anime {
+    font-size: 4.5rem;
+  }
+  .home {
+    padding-bottom: 0;
+  }
 }
 </style>

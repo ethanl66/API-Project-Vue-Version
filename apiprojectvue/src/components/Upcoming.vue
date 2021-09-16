@@ -96,4 +96,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 @import url("../assets/main.scss");
+
+@media screen and (max-width: 767px) {
+  #upcoming-header {
+    font-size: 3rem;
+  }
+}
 </style>

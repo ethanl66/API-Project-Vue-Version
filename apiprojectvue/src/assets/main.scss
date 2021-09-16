@@ -147,5 +147,6 @@ li {
 @media screen and (max-width: 420px) {
   :root {
     --card-width: calc(var(--card-holder-width) / 2);
+    --section-padding: 1rem;
   }
 }
