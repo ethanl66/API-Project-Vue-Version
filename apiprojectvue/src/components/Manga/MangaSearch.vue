@@ -70,7 +70,7 @@ export default {
         this.searchResultsShownComponent = "MangaSearchCards";
       } catch (error) {
         console.log(error);
-        alert("Fail fetch call");
+        alert(error);
       }
     },
   },
