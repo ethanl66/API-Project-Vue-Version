@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div class="anime-page-overall">
     <warning-bar
       msg="Due to an ongoing DDOS attack, loading speeds may be slow. We apologize for
     any inconvienience."
     ></warning-bar>
+    <navbar />
     <div class="anime-page-container-desktop">
       <!--     <router-link :to="home">
       <p class="back-to-home">Back to Main Page</p>
@@ -638,6 +639,7 @@ import CharacterStaffSection from "../components/AnimePage/CharacterStaffSection
 import AnimeStatsModal from "../components/AnimePage/AnimeStatsModal.vue";
 import recommendationCards from "../components/RecommendationCards.vue";
 import WarningBar from "@/components/WarningBar.vue";
+import Navbar from "../components/Navbar.vue";
 
 export default {
   components: {
@@ -645,6 +647,7 @@ export default {
     AnimeStatsModal,
     recommendationCards,
     WarningBar,
+    Navbar,
   },
   data() {
     return {
@@ -816,7 +819,7 @@ export default {
   width: var(--container-width);
   min-height: 100vh;
   margin: auto;
-  padding: 4rem 0;
+  padding: 8rem 0 4rem 0;
 
   /* background-color: black; */
   /*   display: flex;
