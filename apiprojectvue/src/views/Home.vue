@@ -7,7 +7,7 @@
     <navbar />
     <h1 id="find-anime">Find Anime</h1>
     <seasonals></seasonals>
-    <!-- <search></search> -->
+    <search></search>
     <upcoming></upcoming>
   </div>
 </template>
@@ -16,7 +16,7 @@
 // @ is an alias to /src
 import Seasonals from "@/components/Seasonals.vue";
 import Upcoming from "@/components/Upcoming.vue";
-//import Search from "@/components/Search.vue";
+import Search from "@/components/Search.vue";
 //import WarningBar from "@/components/WarningBar.vue";
 import Navbar from "@/components/Navbar.vue";
 
@@ -25,7 +25,7 @@ export default {
   components: {
     Seasonals,
     Upcoming,
-    //Search,
+    Search,
     //WarningBar,
     Navbar,
   },
@@ -40,8 +40,8 @@ export default {
   margin: 0;
   padding: 2rem;
 }
-.home {
+/* .home {
   min-height: 101vh;
-  padding-top: 8rem;
-}
+  padding-top: 4rem;
+} */
 </style>

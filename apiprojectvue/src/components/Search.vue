@@ -1,24 +1,26 @@
 <template>
   <!-- FOR 2.0: SEARCH BY GENRE FUNCTION!!! -->
   <div>
-    <form
-      id="search-form"
-      class="search-form"
-      v-on:submit.prevent="
-        formSubmit();
-        goSearch();
-      "
-    >
-      <input
-        name="search-area"
-        class="search-area"
-        id="search-area"
-        placeholder="Search"
-      />
-      <button type="submit" class="submit-button">
-        <i class="fa fa-search"></i>
-      </button>
-    </form>
+    <section class="search-section display-section">
+      <form
+        id="search-form"
+        class="search-form"
+        v-on:submit.prevent="
+          formSubmit();
+          goSearch();
+        "
+      >
+        <input
+          name="search-area"
+          class="search-area"
+          id="search-area"
+          placeholder="Search"
+        />
+        <button type="submit" class="submit-button">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    </section>
 
     <section class="search-results display-section" id="search-results">
       <component
@@ -82,7 +84,6 @@ export default {
 }
 .search-form {
   margin: 1rem 0;
-  padding-right: 2rem;
 }
 .search-area {
   height: 4rem;
