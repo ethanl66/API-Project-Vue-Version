@@ -1,9 +1,9 @@
 <template>
   <div class="anime-page-overall">
-    <warning-bar
+    <!-- <warning-bar
       msg="Due to an ongoing DDOS attack, loading speeds may be slow. We apologize for
     any inconvienience."
-    ></warning-bar>
+    ></warning-bar> -->
     <navbar />
     <div class="anime-page-container-desktop">
       <!--     <router-link :to="home">
@@ -16,7 +16,7 @@
 
           <section class="broadcast-panel panel">
             <ul class="broadcast-list">
-              <li v-if="singleAnimeData.airing" class="broadcast-item">
+              <li v-if="singleAnimeData.airing = true" class="broadcast-item">
                 Currently airing on {{ singleAnimeData.broadcast }}
               </li>
               <li
@@ -161,9 +161,9 @@
             </ul>
           </section>
 
-          <section class="related-panel panel">
-            <ul class="related-list">
-              <li related-item v-if="singleAnimeData.related.Adaptation[0]">
+          <section class="related-panel panel" v-if="singleAnimeData.related.length >= 1">
+            <ul class="related-list" >
+              <li class='related-item'>
                 Adaptation of
                 <a
                   class="related-link"
@@ -177,7 +177,7 @@
                   }}) --></a
                 >
               </li>
-              <li related-item v-if="singleAnimeData.related.Prequel">
+              <li class='related-item' v-if="singleAnimeData.related.Prequel">
                 Prequel:
                 <a
                   class="related-link"
@@ -188,7 +188,7 @@
                   {{ singleAnimeData.related.Prequel[0].name }}
                 </a>
               </li>
-              <li related-item v-if="singleAnimeData.related.Sequel">
+              <li class='related-item' v-if="singleAnimeData.related.Sequel">
                 Sequel:
                 <a
                   class="related-link"
@@ -546,9 +546,9 @@
         </ul>
       </section>
 
-      <section class="related-section-mobile mobile-panel">
+      <section class="related-section-mobile mobile-panel"  v-if="singleAnimeData.related.length >= 1">
         <ul class="related-list">
-          <li related-item v-if="singleAnimeData.related.Adaptation[0]">
+          <li class='related-item'>
             Adaptation of
             <a
               class="related-link"
@@ -562,7 +562,7 @@
                   }}) --></a
             >
           </li>
-          <li related-item v-if="singleAnimeData.related.Prequel">
+          <li class='related-item' v-if="singleAnimeData.related.Prequel">
             Prequel:
             <a
               class="related-link"
@@ -573,7 +573,7 @@
               {{ singleAnimeData.related.Prequel[0].name }}
             </a>
           </li>
-          <li related-item v-if="singleAnimeData.related.Sequel">
+          <li class='related-item' v-if="singleAnimeData.related.Sequel">
             Sequel:
             <a
               class="related-link"
@@ -668,13 +668,13 @@ export default {
   },
   created: function () {
     this.fetchData();
-    this.updateTitle();
+    //this.updateTitle();
   },
   watch: {
     $route() {
       /* this.fetchData(); */
       location.reload();
-      this.updateTitle();
+      //this.updateTitle();
     },
   },
   methods: {
