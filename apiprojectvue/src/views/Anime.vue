@@ -638,7 +638,7 @@
 import CharacterStaffSection from "../components/AnimePage/CharacterStaffSection.vue";
 import AnimeStatsModal from "../components/AnimePage/AnimeStatsModal.vue";
 import recommendationCards from "../components/RecommendationCards.vue";
-import WarningBar from "@/components/WarningBar.vue";
+//import WarningBar from "@/components/WarningBar.vue";
 import Navbar from "../components/Navbar.vue";
 
 export default {
@@ -646,7 +646,7 @@ export default {
     CharacterStaffSection,
     AnimeStatsModal,
     recommendationCards,
-    WarningBar,
+    //WarningBar,
     Navbar,
   },
   data() {
