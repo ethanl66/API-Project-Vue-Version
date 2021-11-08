@@ -30,6 +30,11 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Anime.vue"),
   },
+  {
+    path: "/manga/:id",
+    name: "Anime",
+    component: () => import("../views/MangaPage.vue"),
+  },
 ];
 
 const router = new VueRouter({
