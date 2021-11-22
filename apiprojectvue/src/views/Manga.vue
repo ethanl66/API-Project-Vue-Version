@@ -2,7 +2,7 @@
   <div class="home">
     <navbar />
     <warning-bar
-      msg="Due to traffic, loading speeds may be slow. We apologize for
+      msg="Due to a DDOS attack, loading speeds may be slow. We apologize for
     any inconvienience."
     ></warning-bar>
     <h1 id="find-anime">Find Manga</h1>

@@ -89,14 +89,14 @@
                   singleMangaData.popularity
                 }})
               </li>
-              <li
+              <!-- <li
                 v-else
                 class="score-item"
               >
                 Popularity: {{ singleMangaData.members }} planning to read (#{{
                   singleMangaData.popularity
                 }})
-              </li>
+              </li> -->
               <!-- <li
                 v-if="singleMangaData.status == 'Not yet aired'"
                 class="score-item"
@@ -167,21 +167,28 @@
             </ul>
           </section>
 
-          <section class="related-panel panel" v-if="singleMangaData.related.length >= 1">
+          
+
+          <section class="links-section">
+            <a
+              class="link-to-mal"
+              :href="singleMangaData.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Link to MAL</a
+            >
+          </section>
+        </div>
+
+        <div class="right-section">
+                    <section class="related-panel panel" v-if="singleMangaData.related">
             <ul class="related-list" >
-              <li class='related-item'>
-                Adaptation of
-                <a
-                  class="related-link"
-                  :href="singleMangaData.related.Adaptation[0].url"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {{ singleMangaData.related.Adaptation[0].name }}
+              <li class='related-item'  v-if="singleMangaData.related.Adaptation.length >= 1">
+                Adaptations: 
+                <a v-for="(adaptation, index) in singleMangaData.related.Adaptation" :key="index" :href="adaptation.url">{{ adaptation.name }} ({{adaptation.type}})</a>
                   <!-- ({{
                     singleMangaData.related.Adaptation[0].type
-                  }}) --></a
-                >
+                  }}) -->
               </li>
               <li class='related-item' v-if="singleMangaData.related.Prequel">
                 Prequel:
@@ -208,27 +215,13 @@
             </ul>
             <!-- ADD ADAPTATION, SIDE STORY, SPIN-OFF, ALTERNATIVE VERSION (maybe combine these?) OTHER -->
           </section>
-
-          <section class="links-section">
-            <a
-              class="link-to-mal"
-              :href="singleMangaData.url"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Link to MAL</a
-            >
-          </section>
-        </div>
-
-        <div class="right-section">
-                    <!--         <section class="related-panel">
           <ul class="related-list">
-            <li class="related-item">Adaptation</li>
+           
             <li class="related-item">Prequel</li>
             <li class="related-item">Sequel</li>
             <li class="related-item">Side Story</li>
           </ul>
-        </section> -->
+        
 
           <!-- <character-staff-section
             :characterStaff="characterStaff"
@@ -711,3 +704,32 @@ export default {
 
 //USE DIFFERENT ANIME.VUE FILE FOR MOBILE
 </style>
+
+
+<!-- authors: Array of objects containing name
+background: string
+chapters: null
+demographics: Array of objects containing name, type, url
+favorites: numeric
+genres: Array of objects containing name, type
+image_url: string
+mal_id: numeric
+members: numeric
+popularity: numeric
+published.string: string
+publishing: boolean
+rank: numeric
+related.adaptation: Array of objects containing name, type
+related.side story: Array of objects comtaining name, type
+related.spin-off: Array of objects containing name, type
+score: numeric
+serializations: Array of objects containng name, type, url
+status: string ("Publishing")
+synopsis: string
+themes: Array of objects containing name
+title: string
+title_english: string
+title_synonyms: Array of strings
+type: string
+url: string
+volumes: null -->
