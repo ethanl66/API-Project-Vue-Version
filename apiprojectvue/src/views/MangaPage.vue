@@ -181,16 +181,24 @@
         </div>
 
         <div class="right-section">
-                    <section class="related-panel panel" v-if="singleMangaData.related">
-            <ul class="related-list" >
-              <li class='related-item'  v-if="singleMangaData.related.Adaptation.length >= 1">
-                Adaptations: 
-                <a v-for="(adaptation, index) in singleMangaData.related.Adaptation" :key="index" :href="adaptation.url">{{ adaptation.name }} ({{adaptation.type}})</a>
+                    <section class="related-panel panel"  v-if="singleMangaData.related.Adaptation">
+           
+              <ul class='related-list adaptation-list'  v-if="singleMangaData.related.Adaptation.length >= 1">
+                <h5>Adaptations:</h5>
+                <li class="adaptation-list-item" v-for="(adaptation, index) in singleMangaData.related.Adaptation" :key="index"><a  :href="adaptation.url">{{ adaptation.name }} ({{adaptation.type}})</a>
                   <!-- ({{
                     singleMangaData.related.Adaptation[0].type
                   }}) -->
-              </li>
-              <li class='related-item' v-if="singleMangaData.related.Prequel">
+              </li></ul>
+              <!-- <li class='related-item'  v-if="singleMangaData.related.['Side story'].length >= 1">
+                Adaptations: 
+                <a v-for="(adaptation, index) in singleMangaData.related.Adaptation" :key="index" :href="adaptation.url">{{ adaptation.name }} ({{adaptation.type}})</a> 
+              </li> --> <!-- SIDE STORY HAS SPACE!!!!!!!!!!!!!!!!! -->
+              <!-- <li class='related-item'  v-if="singleMangaData.related.Spin-off.length >= 1">
+                Spin-offs: 
+                <a v-for="(spinoff, index) in singleMangaData.related.Spin-off" :key="index" :href="spinoff.url">{{ spinoff.name }} ({{spinoff.type}})</a>
+              </li> --> <!-- SPIN-OFF HAS DASH!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+              <!-- <li class='related-item' v-if="singleMangaData.related.Prequel">
                 Prequel:
                 <a
                   class="related-link"
@@ -200,8 +208,8 @@
                 >
                   {{ singleMangaData.related.Prequel[0].name }}
                 </a>
-              </li>
-              <li class='related-item' v-if="singleMangaData.related.Sequel">
+              </li> -->
+              <!-- <li class='related-item' v-if="singleMangaData.related.Sequel">
                 Sequel:
                 <a
                   class="related-link"
@@ -211,15 +219,17 @@
                 >
                   {{ singleMangaData.related.Sequel[0].name }}
                 </a>
-              </li>
-            </ul>
+              </li> -->
+            
             <!-- ADD ADAPTATION, SIDE STORY, SPIN-OFF, ALTERNATIVE VERSION (maybe combine these?) OTHER -->
+          </section>
+          
+          <section class="background-panel panel">
+            <p class="data-background">{{singleMangaData.background}}</p>
           </section>
           <ul class="related-list">
            
-            <li class="related-item">Prequel</li>
-            <li class="related-item">Sequel</li>
-            <li class="related-item">Side Story</li>
+            
           </ul>
         
 
@@ -336,7 +346,7 @@ export default {
         const data = await response.json();
         document.title = data.title + " - Find Manga";
         this.singleMangaData = data;
-        //console.log(data);
+        console.log(data);
         //document.title = this.singleMangaData.title + " - Find Anime";
 
        
@@ -660,6 +670,11 @@ export default {
 
 .character-staff-section-mobile {
   padding: 2rem;
+}
+
+.adaptation-list {
+  list-style-type: circle;
+  list-style-position: inside;
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
