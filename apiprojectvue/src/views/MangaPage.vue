@@ -185,7 +185,7 @@
            
               <ul class='related-list adaptation-list'  v-if="singleMangaData.related.Adaptation.length >= 1">
                 <h5>Adaptations:</h5>
-                <li class="adaptation-list-item" v-for="(adaptation, index) in singleMangaData.related.Adaptation" :key="index"><a  :href="adaptation.url">{{ adaptation.name }} ({{adaptation.type}})</a>
+                <li class="adaptation-list-item" v-for="(adaptation, index) in singleMangaData.related.Adaptation" :key="index"><a class="adaptation-link" :href="adaptation.url">{{ adaptation.name }} ({{adaptation.type}})</a>
                   <!-- ({{
                     singleMangaData.related.Adaptation[0].type
                   }}) -->
@@ -675,6 +675,10 @@ export default {
 .adaptation-list {
   list-style-type: circle;
   list-style-position: inside;
+}
+.adaptation-link:hover {
+color: var(--primary-color);
+text-decoration: underline;
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
