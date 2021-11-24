@@ -16,7 +16,7 @@
 
           <section class="broadcast-panel panel">
             <ul class="broadcast-list">
-                <li class="broadcast-item" v-if="singleMangaData.status = 'Publishing'">
+                <li class="broadcast-item" v-if="singleMangaData.publishing = true">
                    Ongoing releases
                 </li>
                 <li class="broadcast-item" v-else>Status: {{singleMangaData.status}}</li>
@@ -76,6 +76,7 @@
 
       <section class="main-panel">
         <div class="left-section">
+          <section class="publishing-panel panel"><p> Published: {{singleMangaData.published.string}}</p></section>
           <section class="score-panel panel">
             <ul class="score-list">
               <li v-if="singleMangaData.score" class="score-item">
@@ -164,7 +165,21 @@
                   >
                 </span>
               </li>
+              <li
+                v-if="singleMangaData.serializations.length >= 1"
+                class="studios-item"
+              >
+                Serializations:
+                <span
+                  v-for="(serialization, index) in singleMangaData.serializations"
+                  :key="index"
+                >
+                  {{ serialization.name
+                  }}
+                </span>
+              </li>
             </ul>
+            
           </section>
 
           
@@ -224,7 +239,7 @@
             <!-- ADD ADAPTATION, SIDE STORY, SPIN-OFF, ALTERNATIVE VERSION (maybe combine these?) OTHER -->
           </section>
           
-          <section class="background-panel panel">
+          <section class="background-panel panel" v-if="singleMangaData.background">
             <p class="data-background">{{singleMangaData.background}}</p>
           </section>
           <ul class="related-list">
