@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     animePath: function () {
-      return `/anime/${this.clickedId}`;
+      return `/manga/${this.clickedId}`;
     },
   },
   created: function () {},
